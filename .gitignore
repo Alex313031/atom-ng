@@ -15,6 +15,7 @@ node_modules
 /tags
 /atom-shell/
 /out/
+/release/
 /electron/bin/
 /dot-atom/packages/minimap/dist/
 docs/output
