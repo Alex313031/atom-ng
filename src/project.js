@@ -354,7 +354,7 @@ module.exports = class Project extends Model {
       return this.rootDirectories.map(rootDirectory => rootDirectory.getPath());
     } catch (e) {
       atom.notifications.addError(
-        "Please clear Atom's window state with: atom --clear-window-state"
+        "Please clear Atom-ng's window state with: atom --clear-window-state"
       );
     }
   }

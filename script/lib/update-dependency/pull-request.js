@@ -3,7 +3,7 @@ const { request } = require('@octokit/request');
 const requestWithAuth = request.defaults({
   baseUrl: 'https://api.github.com',
   headers: {
-    'user-agent': 'atom',
+    'user-agent': 'atom-ng',
     authorization: `token ${process.env.AUTH_TOKEN}`
   },
   owner: 'atom',

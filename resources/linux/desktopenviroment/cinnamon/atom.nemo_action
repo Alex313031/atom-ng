@@ -1,9 +1,9 @@
 [Nemo Action]
 Active=true
-Name=Open in Atom
-Comment=Open in Atom
+Name=Open in Atom-ng
+Comment=Open in Atom-ng
 #%U is the current selected file, this will also work on current directory
-Exec=atom -n %U
-Icon-Name=atom
+Exec=atom-ng -n %U
+Icon-Name=atom-ng
 Selection=any
 Extensions=any

@@ -12,13 +12,13 @@ const CONFIG = require('../config');
 function install(installationDirPath, packagedAppFileName, packagedAppPath) {
   if (fs.existsSync(installationDirPath)) {
     console.log(
-      `Removing previously installed "${packagedAppFileName}" at "${installationDirPath}"`
+      `Removing previously installed "${packagedAppFileName}" at "${installationDirPath}"...`
     );
     fs.removeSync(installationDirPath);
   }
 
   console.log(
-    `Installing "${packagedAppFileName}" at "${installationDirPath}"`
+    `Installing "${packagedAppFileName}" at "${installationDirPath}"...`
   );
   fs.copySync(packagedAppPath, installationDirPath);
 }
@@ -66,7 +66,7 @@ module.exports = function(packagedAppPath, installDir) {
       install(installationDirPath, packagedAppFileName, packagedAppPath);
     } catch (e) {
       console.log(
-        `Administrator elevation required to install into "${installationDirPath}"`
+        `Administrator elevation is required to install into "${installationDirPath}"`
       );
       const fsAdmin = require('fs-admin');
       return new Promise((resolve, reject) => {
@@ -77,13 +77,13 @@ module.exports = function(packagedAppPath, installDir) {
     }
   } else {
     const atomExecutableName =
-      CONFIG.channel === 'stable' ? 'atom' : 'atom-' + CONFIG.channel;
+      CONFIG.channel === 'stable' ? 'atom-ng' : 'atom-ng-' + CONFIG.channel;
     const apmExecutableName =
       CONFIG.channel === 'stable' ? 'apm' : 'apm-' + CONFIG.channel;
     const appName =
       CONFIG.channel === 'stable'
-        ? 'Atom'
-        : startCase('Atom ' + CONFIG.channel);
+        ? 'Atom-ng'
+        : startCase('Atom-ng ' + CONFIG.channel);
     const appDescription = CONFIG.appMetadata.description;
     const prefixDirPath =
       installDir !== '' ? handleTilde(installDir) : path.join('/usr', 'local');
@@ -114,7 +114,7 @@ module.exports = function(packagedAppPath, installDir) {
         if (fs.existsSync(iconPath)) {
           if (!existingIconsFound) {
             console.log(
-              `Removing existing icons from "${baseIconThemeDirPath}"`
+              `Removing existing icons from "${baseIconThemeDirPath}"...`
             );
           }
           existingIconsFound = true;
@@ -122,7 +122,7 @@ module.exports = function(packagedAppPath, installDir) {
         }
       });
 
-      console.log(`Installing icons at "${baseIconThemeDirPath}"`);
+      console.log(`Installing icons at "${baseIconThemeDirPath}"...`);
       const appIconsPath = path.join(
         CONFIG.repositoryRootPath,
         'resources',
@@ -146,7 +146,7 @@ module.exports = function(packagedAppPath, installDir) {
         }
       });
 
-      console.log(`Updating icon cache for "${baseIconThemeDirPath}"`);
+      console.log(`Updating icon cache for "${baseIconThemeDirPath}"...`);
       try {
         execSync(`gtk-update-icon-cache ${baseIconThemeDirPath} --force`);
       } catch (e) {}
@@ -160,11 +160,11 @@ module.exports = function(packagedAppPath, installDir) {
       );
       if (fs.existsSync(desktopEntryPath)) {
         console.log(
-          `Removing existing desktop entry file at "${desktopEntryPath}"`
+          `Removing existing desktop entry file at "${desktopEntryPath}"...`
         );
         fs.removeSync(desktopEntryPath);
       }
-      console.log(`Writing desktop entry file at "${desktopEntryPath}"`);
+      console.log(`Writing desktop entry file at "${desktopEntryPath}"...`);
       const desktopEntryTemplate = fs.readFileSync(
         path.join(
           CONFIG.repositoryRootPath,
@@ -188,11 +188,11 @@ module.exports = function(packagedAppPath, installDir) {
       const atomBinDestinationPath = path.join(binDirPath, atomExecutableName);
       if (fs.existsSync(atomBinDestinationPath)) {
         console.log(
-          `Removing existing executable at "${atomBinDestinationPath}"`
+          `Removing existing executable at "${atomBinDestinationPath}"...`
         );
         fs.removeSync(atomBinDestinationPath);
       }
-      console.log(`Copying atom.sh to "${atomBinDestinationPath}"`);
+      console.log(`Copying atom.sh into "${atomBinDestinationPath}"...`);
       fs.copySync(
         path.join(CONFIG.repositoryRootPath, 'atom.sh'),
         atomBinDestinationPath
@@ -205,11 +205,11 @@ module.exports = function(packagedAppPath, installDir) {
       try {
         fs.lstatSync(apmBinDestinationPath);
         console.log(
-          `Removing existing executable at "${apmBinDestinationPath}"`
+          `Removing existing executable at "${apmBinDestinationPath}"...`
         );
         fs.removeSync(apmBinDestinationPath);
       } catch (e) {}
-      console.log(`Symlinking apm to "${apmBinDestinationPath}"`);
+      console.log(`Symlinking apm to "${apmBinDestinationPath}"...`);
       fs.symlinkSync(
         path.join(
           '..',
@@ -226,7 +226,7 @@ module.exports = function(packagedAppPath, installDir) {
       );
     }
 
-    console.log(`Changing permissions to 755 for "${installationDirPath}"`);
+    console.log(`Changing permissions to 755 for "${installationDirPath}"...`);
     fs.chmodSync(installationDirPath, '755');
   }
 

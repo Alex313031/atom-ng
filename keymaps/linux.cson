@@ -18,7 +18,7 @@
   'alt-shift-right': 'editor:move-selection-right'
 
   # Sublime Parity
-  'ctrl-,': 'application:show-settings'
+  'alt-s': 'application:show-settings'
   'ctrl-shift-n': 'application:new-window'
   'ctrl-shift-w': 'window:close'
   'ctrl-o': 'application:open-file'

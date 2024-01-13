@@ -1,5 +1,8 @@
 #!/bin/bash
 # Get current path in Windows format
+
+export NODE_SKIP_PLATFORM_CHECK=1
+
 if command -v "cygpath" > /dev/null; then
   # We have cygpath to do the conversion
   ATOMCMD=$(cygpath "$(dirname "$0")/atom.cmd" -a -w)

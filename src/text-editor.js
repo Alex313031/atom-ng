@@ -325,7 +325,7 @@ module.exports = class TextEditor {
       \`TextEditor.prototype.editorElement\` has always been private, but now
       it is gone. Reading the \`editorElement\` property still returns a
       reference to the editor element but this field will be removed in a
-      later version of Atom, so we recommend using the \`element\` property instead.\
+      later version of Atom-ng, so we recommend using the \`element\` property instead.\
     `);
 
     return this.getElement();

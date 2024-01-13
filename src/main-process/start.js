@@ -3,7 +3,6 @@ const nslog = require('nslog');
 const path = require('path');
 const temp = require('temp');
 const parseCommandLine = require('./parse-command-line');
-const startCrashReporter = require('../crash-reporter-start');
 const getReleaseChannel = require('../get-release-channel');
 const atomPaths = require('../atom-paths');
 const fs = require('fs');
@@ -37,12 +36,78 @@ module.exports = function start(resourcePath, devResourcePath, startTime) {
     }
   });
 
+  // Enable sandbox opportunistically
+  // app.enableSandbox()
+
   // TodoElectronIssue this should be set to true before Electron 12 - https://github.com/electron/electron/issues/18397
+  // WontFix: Atom-ng still needs this when using Electron 12.2.3
   app.allowRendererProcessReuse = false;
 
-  app.commandLine.appendSwitch('enable-experimental-web-platform-features');
+  if (process.env.NODE_ENV === 'development') {
+    process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = false;
+  } else {
+    process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+  }
 
+  // Electron 12 devtools doesn't open without disabling the Chromium sandbox
+  app.commandLine.appendSwitch('no-sandbox');
+  // Electron <13 crashes without disabling the GPU sandbox
+  // app.commandLine.appendSwitch('disable-gpu-sandbox');
+  // Runs GPU threads in the main process
+  // app.commandLine.appendSwitch('in-process-gpu');
+  // Enable experimental web features
+  app.commandLine.appendSwitch('enable-experimental-web-platform-features');
+  // Including new Canvas2D APIs
+  app.commandLine.appendSwitch('new-canvas-2d-api');
+// The two following flags allow easier local web development
+  // Allow file:// URIs to read other file:// URIs
+  app.commandLine.appendSwitch('allow-file-access-from-files');
+  // Enable local DOM to access all resources in a tree
+  app.commandLine.appendSwitch('enable-local-file-accesses');
+  // Enable QUIC for faster handshakes
+  app.commandLine.appendSwitch('enable-quic');
+  // Enable inspecting ALL layers
+  app.commandLine.appendSwitch('enable-ui-devtools');
+  // Force enable GPU acceleration
+  app.commandLine.appendSwitch('ignore-gpu-blocklist');
+  // Force enable GPU rasterization
+  app.commandLine.appendSwitch('enable-gpu-rasterization');
+  // Enable OOP Rasterization for Canvas layers
+  app.commandLine.appendSwitch('enable-features', 'CanvasOopRasterization');
+  
+  if (process.platform === 'linux') {
+    // Use VAAPI on Linux
+    app.commandLine.appendSwitch('enable-features', 'VaapiVideoDecoder');
+  }
+
+  // See: https://www.electronjs.org/docs/latest/tutorial/testing-widevine-cdm
+  if (process.platform === 'linux') {
+    // You have to pass the directory that contains the widevine library here, it is
+    // * `libwidevinecdm.so` on Linux,
+    // * `libwidevinecdm.dylib` on macOS,
+    // * `widevinecdm.dll` on Windows.
+    app.commandLine.appendSwitch('widevine-cdm-path', 'WidevineCdm/4.10.2557.0/_platform_specific/linux_x64/')
+    // The version of plugin can be got from `chrome://components` page in Chromium.
+    app.commandLine.appendSwitch('widevine-cdm-version', '4.10.2557.0')
+  }
+  // See: https://www.electronjs.org/docs/latest/tutorial/testing-widevine-cdm#on-windows
+  if (process.platform === 'win32') {
+    // You have to pass the directory that contains the widevine library here, it is
+    // * `libwidevinecdm.so` on Linux,
+    // * `libwidevinecdm.dylib` on macOS,
+    // * `widevinecdm.dll` on Windows.
+    app.commandLine.appendSwitch('widevine-cdm-path', 'WidevineCdm/4.10.2557.0/_platform_specific/win_x64/')
+    // The version of plugin can be got from `chrome://components` page in Chromium.
+    app.commandLine.appendSwitch('widevine-cdm-version', '4.10.2557.0')
+  }
+
+  // Export command line arguments
   const args = parseCommandLine(process.argv.slice(1));
+
+  if (args.fpsCounter) {
+    // Show a heads up display with FPS Counter and GPU Mem usage.
+    app.commandLine.appendSwitch('show-fps-counter');
+  }
 
   // This must happen after parseCommandLine() because yargs uses console.log
   // to display the usage message.
@@ -103,12 +168,6 @@ module.exports = function start(resourcePath, devResourcePath, startTime) {
 
   app.on('open-file', addPathToOpen);
   app.on('open-url', addUrlToOpen);
-  app.on('will-finish-launching', () =>
-    startCrashReporter({
-      uploadToServer: config.get('core.telemetryConsent') === 'limited',
-      releaseChannel
-    })
-  );
 
   if (args.userDataDir != null) {
     app.setPath('userData', args.userDataDir);

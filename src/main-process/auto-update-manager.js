@@ -26,7 +26,7 @@ module.exports = class AutoUpdateManager extends EventEmitter {
       '..',
       '..',
       'resources',
-      'atom.png'
+      'atom-ng.png'
     );
     this.updateUrlPrefix =
       process.env.ATOM_UPDATE_URL_PREFIX || 'https://atom.io';

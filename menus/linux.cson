@@ -199,8 +199,9 @@
       { label: 'Report Issue', command: 'application:report-issue' }
       { label: 'Search Issues', command: 'application:search-issues' }
       { type: 'separator' }
-      { label: 'About Atom', command: 'application:about' }
+      {'label': 'Welcome Guide', 'command': 'welcome:show'}
       { type: 'separator' }
+      { label: 'About Atom-ng', command: 'application:about' }
     ]
   }
 ]

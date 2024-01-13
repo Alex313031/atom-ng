@@ -3,7 +3,8 @@
 'use strict'
 
 if (process.argv.includes('--no-bootstrap')) {
-  console.log('Skipping bootstrap')
+  require('colors')
+  console.log('WARNING: Skipping bootstrap...'.red)
 } else {
   // Bootstrap first to ensure all the dependencies used later in this script
   // are installed.
@@ -19,17 +20,17 @@ const yargs = require('yargs')
 const argv = yargs
   .usage('Usage: $0 [options]')
   .help('help')
-  .describe('existing-binaries', 'Use existing Atom binaries (skip clean/transpile/cache)')
+  .describe('existing-binaries', 'Use existing Atom-ng binaries (skip clean/transpile/cache)')
   .describe('code-sign', 'Code-sign executables (macOS and Windows only)')
   .describe('test-sign', 'Test-sign executables (macOS only)')
   .describe('create-windows-installer', 'Create installer (Windows only)')
   .describe('create-debian-package', 'Create .deb package (Linux only)')
   .describe('create-rpm-package', 'Create .rpm package (Linux only)')
-  .describe('compress-artifacts', 'Compress Atom binaries (and symbols on macOS)')
+  .describe('compress-artifacts', 'Compress Atom-ng binaries (and symbols on macOS)')
   .describe('generate-api-docs', 'Only build the API documentation')
-  .describe('install', 'Install Atom')
+  .describe('install', 'Install Atom-ng')
   .string('install')
-  .describe('ci', 'Install dependencies quickly (package-lock.json files must be up to date)')
+  .describe('ci', 'Install dependencies quickly (package-lock.json files must be up to date!)')
   .wrap(yargs.terminalWidth())
   .argv
 
@@ -68,6 +69,9 @@ const CONFIG = require('./config')
 // Used by the 'github' package for Babel configuration
 process.env.ELECTRON_VERSION = CONFIG.appMetadata.electronVersion
 
+// Export current commit hash for the About package
+process.env.ATOM_COMMIT_HASH = CONFIG.commitHash
+
 let binariesPromise = Promise.resolve()
 
 if (!argv.existingBinaries) {
@@ -101,13 +105,13 @@ if (!argv.generateApiDocs) {
           } else if (argv.testSign) {
             testSignOnMac(packagedAppPath)
           } else {
-            console.log('Skipping code-signing. Specify the --code-sign option to perform code-signing'.gray)
+            console.log('Note: Skipping code-signing. Specify the --code-sign option to perform code-signing'.yellow)
           }
           break
         }
         case 'win32': {
           if (argv.testSign) {
-            console.log('Test signing is not supported on Windows, skipping.'.gray)
+            console.log('Test signing is not supported on Windows, skipping.'.yellow)
           }
 
           if (argv.codeSign) {
@@ -117,7 +121,7 @@ if (!argv.generateApiDocs) {
             }
             codeSignOnWindows(executablesToSign)
           } else {
-            console.log('Skipping code-signing. Specify the --code-sign option to perform code-signing'.gray)
+            console.log('Note: Skipping code-signing. Specify the --code-sign option to perform code-signing'.yellow)
           }
           if (argv.createWindowsInstaller) {
             return createWindowsInstaller(packagedAppPath)
@@ -126,7 +130,7 @@ if (!argv.generateApiDocs) {
                 return packagedAppPath
               })
           } else {
-            console.log('Skipping creating installer. Specify the --create-windows-installer option to create a Squirrel-based Windows installer.'.gray)
+            console.log('Note: Skipping creating installer. Specify the --create-windows-installer option to create a Squirrel-based Windows installer.'.yellow)
           }
           break
         }
@@ -134,13 +138,13 @@ if (!argv.generateApiDocs) {
           if (argv.createDebianPackage) {
             createDebianPackage(packagedAppPath)
           } else {
-            console.log('Skipping creating debian package. Specify the --create-debian-package option to create it.'.gray)
+            console.log('Note: Skipping creating debian package. Specify the --create-debian-package option to create it.'.yellow)
           }
 
           if (argv.createRpmPackage) {
             createRpmPackage(packagedAppPath)
           } else {
-            console.log('Skipping creating rpm package. Specify the --create-rpm-package option to create it.'.gray)
+            console.log('Note: Skipping creating rpm package. Specify the --create-rpm-package option to create it.'.yellow)
           }
           break
         }
@@ -151,13 +155,13 @@ if (!argv.generateApiDocs) {
       if (argv.compressArtifacts) {
         compressArtifacts(packagedAppPath)
       } else {
-        console.log('Skipping artifacts compression. Specify the --compress-artifacts option to compress Atom binaries (and symbols on macOS)'.gray)
+        console.log('Note: Skipping artifacts compression. Specify the --compress-artifacts option to compress Atom-ng binaries (and symbols on macOS)'.yellow)
       }
 
       if (argv.install != null) {
         installApplication(packagedAppPath, argv.install)
       } else {
-        console.log('Skipping installation. Specify the --install option to install Atom'.gray)
+        console.log('Note: Skipping installation. Specify the --install option to install Atom-ng'.yellow)
       }
     })
 }

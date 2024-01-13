@@ -1,0 +1,213 @@
+@modified-icon-width: 8px;
+@tab-top-padding: 5px;
+@tab-bottom-border-height: 2px;
+@tab-max-width: 160px;
+
+.tab-bar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 0;
+    height: @tab-height;
+    max-height: @tab-height;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab {
+        position: relative;
+        max-width: @tab-max-width;
+        height: @tab-height;
+        line-height: @tab-height;
+        padding: 0 @component-padding;
+        color: @text-color;
+        transition: color 0.1s ease-in;
+        font-size: 1em;
+        font-weight: 300;
+        .md-underline(@base-color);
+
+        .close-icon {
+            color: @text-color;
+            cursor: pointer;
+            line-height: @tab-height;
+            right: @component-icon-padding;
+            text-align: right;
+            transform: scale(0);
+            transition: transform 250ms @md-timing-function;
+            will-change: opacity;
+            z-index: 3;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+
+        &.modified:not(:hover) .close-icon {
+            right: @component-padding + 4;
+            top: ~'calc(50% - .135em)';
+            transform: scale(1);
+            width: @modified-icon-width;
+            height: @modified-icon-width;
+            border-color: @base-color;
+            opacity: 1;
+        }
+
+        &.modified:hover .close-icon {
+            color: @text-color;
+
+            &:hover {
+                color: @text-color;
+            }
+        }
+
+        .title {
+            position: relative;
+            z-index: 1;
+            margin-top: -@tab-top-padding;
+            padding-top: @tab-top-padding;
+            padding-right: 10px;
+
+            &.icon::before {
+                font-size: 1.25em;
+                margin-right: 1em;
+            }
+        }
+
+        &:hover .close-icon {
+            transform: scale(1);
+        }
+
+        &[data-type="TreeView"] {
+            &.active::after {
+                display: none;
+            }
+        }
+    }
+
+    .tab.active {
+        color: @text-color-highlight;
+        z-index: 1;
+
+        .close-icon {
+            color: @text-color;
+        }
+    }
+
+    .tab:hover {
+        color: @text-color-highlight;
+    }
+
+    .tab.active:hover .close-icon {
+        color: @text-color;
+
+        &:hover {
+            color: inherit;
+        }
+    }
+
+    .placeholder {
+        height: @tab-height + @tab-top-padding + @tab-bottom-border-height;
+        pointer-events: none;
+
+        &:after {
+            top: @tab-height + @tab-top-padding + @tab-bottom-border-height - 2px;
+        }
+    }
+
+    // Panel contrast
+    .amu-panel-contrast & {
+        background-color: darken(@app-background-color, 1.5%);
+    }
+
+    // Tinted Tab Bar
+    .amu-tinted-tab-bar & {
+        background-color: @base-color;
+
+        .tab {
+            color: @accent-text-color;
+
+            &.active {
+                .md-underline(@accent-color);
+
+                .close-icon {
+                    color: @accent-text-color;
+                }
+            }
+
+            &.modified:not(:hover) .close-icon {
+                border-color: @accent-text-color;
+            }
+
+            &.modified:hover .close-icon {
+                color: @accent-text-color;
+
+                &:hover {
+                    color: @accent-text-color;
+                }
+            }
+
+            .close-icon {
+                color: @accent-text-color;
+            }
+        }
+    }
+
+    .amu-compact-tab-bar & {
+        height: @compact-tab-height;
+        max-height: @compact-tab-height;
+
+        .tab {
+            height: @compact-tab-height;
+            line-height: @compact-tab-height;
+
+            .close-icon {
+                line-height: @compact-tab-height;
+            }
+        }
+    }
+
+    .amu-stretched-tabs & {
+        // Make the tabs span the whole tab bar width
+        .tab {
+            max-width: 100%;
+            flex-grow: 2;
+            text-align: center;
+            &[data-type="TreeView"] {
+                text-align: left;
+            }
+        }
+    }
+}
+
+// Panel Shadows
+.amu-panel-shadows .tab-bar + .item-views {
+    position: relative;
+
+    &::before {
+        content: '';
+        background: linear-gradient(to bottom, black, transparent);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        opacity: .125;
+        pointer-events: none;
+        z-index: 10;
+    }
+}
+
+// File icons
+atom-pane .tab-bar .tab .title[data-path] {
+    &::before {
+        margin-right: @component-icon-padding;
+    }
+
+    body:not(.file-icons-coloured) &:not(.status-modified):not(.status-added):not(.status-ignored):not(.status-removed):not(.status-renamed)::before {
+        color: @text-color !important;
+
+        .amu-tinted-tab-bar & {
+            color: @accent-text-color !important;
+        }
+    }
+}

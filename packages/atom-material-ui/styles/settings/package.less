@@ -1,0 +1,60 @@
+.settings-view {
+    .packages .search-container {
+        margin-bottom: 2rem;
+    }
+
+    .package-card {
+        background-color: fade(@text-color, 5%);
+        border-radius: @component-border-radius;
+        margin-bottom: 1.5rem;
+        .z-depth-1;
+
+        &.disabled {
+            background-color: fade(@text-color, 5%);
+            opacity: .5;
+        }
+
+        &:hover {
+            background-color: fade(@text-color, 5%);
+        }
+
+        .btn-group {
+            box-shadow: none;
+
+            .status-indicator {
+                min-width: 2px;
+                width: 2px;
+            }
+        }
+
+        .meta-controls {
+            .install-button, .uninstall-button {
+                // Use px units to avoid icon jiggle
+                &.is-installing, &.is-uninstalling {
+                    animation: spin 1s linear infinite;
+                    background: none;
+                    border: 2px solid @base-color;
+                    border-radius: 50%;
+                    border-right-color: transparent;
+                    font-size: 0;
+                    height: 32px;
+                    padding: 0;
+                    width: 32px;
+
+                    &::before {
+                        animation: spin 1s linear infinite reverse;
+                        height: 16px;
+                        margin: 0;
+                        position: relative;
+                        vertical-align: middle;
+                        width: 16px;
+                    }
+
+                    &:hover {
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

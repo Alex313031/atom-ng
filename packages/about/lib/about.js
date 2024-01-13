@@ -70,6 +70,7 @@ module.exports = class About {
         currentElectronVersion: this.state.currentElectronVersion,
         currentChromeVersion: this.state.currentChromeVersion,
         currentNodeVersion: this.state.currentNodeVersion,
+        currentV8Version: this.state.currentV8Version,
         availableVersion: this.state.updateManager.getAvailableVersion()
       });
       this.handleStateChanges();

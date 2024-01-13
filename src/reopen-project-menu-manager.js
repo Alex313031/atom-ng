@@ -121,7 +121,7 @@ module.exports = class ReopenProjectMenuManager {
             title: 'New Window',
             program: process.execPath,
             args: '--new-window',
-            description: 'Opens a new Atom window'
+            description: 'Opens a new Atom-ng window'
           }
         ]
       }

@@ -16,6 +16,7 @@ module.exports = {
     console.log(
       'Wrote Dependencies Fingerprint:',
       FINGERPRINT_PATH,
+      '|',
       fingerprint
     );
   },

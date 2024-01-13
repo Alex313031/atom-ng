@@ -8,10 +8,12 @@ const template = require('lodash.template');
 
 const CONFIG = require('../config');
 
+require('colors');
+
 module.exports = function(packagedAppPath) {
   console.log(`Creating rpm package for "${packagedAppPath}"`);
   const atomExecutableName =
-    CONFIG.channel === 'stable' ? 'atom' : `atom-${CONFIG.channel}`;
+    CONFIG.channel === 'stable' ? 'atom-ng' : `atom-ng-${CONFIG.channel}`;
   const apmExecutableName =
     CONFIG.channel === 'stable' ? 'apm' : `apm-${CONFIG.channel}`;
   const appName = CONFIG.appName;
@@ -19,7 +21,7 @@ module.exports = function(packagedAppPath) {
   // RPM versions can't have dashes or tildes in them.
   // (Ref.: https://twiki.cern.ch/twiki/bin/view/Main/RPMAndDebVersioning)
   const appVersion = CONFIG.appMetadata.version.replace(/-/g, '.');
-  const policyFileName = `atom-${CONFIG.channel}.policy`;
+  const policyFileName = `atom-ng-${CONFIG.channel}.policy`;
 
   const rpmPackageDirPath = path.join(CONFIG.homeDirPath, 'rpmbuild');
   const rpmPackageBuildDirPath = path.join(rpmPackageDirPath, 'BUILD');
@@ -34,13 +36,13 @@ module.exports = function(packagedAppPath) {
 
   if (fs.existsSync(rpmPackageDirPath)) {
     console.log(
-      `Deleting existing rpm build directory at "${rpmPackageDirPath}"`
+      `Deleting existing rpm build directory at "${rpmPackageDirPath}"...`
     );
     fs.removeSync(rpmPackageDirPath);
   }
 
   console.log(
-    `Creating rpm package directory structure at "${rpmPackageDirPath}"`
+    `Creating rpm package directory structure at` + `"${rpmPackageDirPath}"`.green
   );
   fs.mkdirpSync(rpmPackageDirPath);
   fs.mkdirpSync(rpmPackageBuildDirPath);
@@ -119,7 +121,7 @@ module.exports = function(packagedAppPath) {
     path.join(rpmPackageBuildDirPath, policyFileName)
   );
 
-  console.log(`Generating .rpm package from "${rpmPackageDirPath}"`);
+  console.log(`Generating .rpm package from "${rpmPackageDirPath}"...`);
   spawnSync('rpmbuild', ['-ba', '--clean', rpmPackageSpecFilePath]);
   for (let generatedArch of fs.readdirSync(rpmPackageRpmsDirPath)) {
     const generatedArchDirPath = path.join(
@@ -129,7 +131,7 @@ module.exports = function(packagedAppPath) {
     const generatedPackageFileNames = fs.readdirSync(generatedArchDirPath);
     assert(
       generatedPackageFileNames.length === 1,
-      'Generated more than one rpm package'
+      'Error: Generated more than one rpm package!'.red
     );
     const generatedPackageFilePath = path.join(
       generatedArchDirPath,
@@ -137,10 +139,10 @@ module.exports = function(packagedAppPath) {
     );
     const outputRpmPackageFilePath = path.join(
       CONFIG.buildOutputPath,
-      `atom.${generatedArch}.rpm`
+      `atom-ng.${generatedArch}.rpm`
     );
     console.log(
-      `Copying "${generatedPackageFilePath}" into "${outputRpmPackageFilePath}"`
+      `Copying "${generatedPackageFilePath}" into "${outputRpmPackageFilePath}"...`
     );
     fs.copySync(generatedPackageFilePath, outputRpmPackageFilePath);
   }

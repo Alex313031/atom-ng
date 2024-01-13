@@ -1,4 +1,4 @@
-# Atom Release Build Documentation
+# Atom-ng Release Build Documentation
 
 ## Overview
 

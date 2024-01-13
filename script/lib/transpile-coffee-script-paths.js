@@ -9,7 +9,7 @@ const CONFIG = require('../config');
 
 module.exports = function() {
   console.log(
-    `Transpiling CoffeeScript paths in ${CONFIG.intermediateAppPath}`
+    `Transpiling CoffeeScript paths in ${CONFIG.intermediateAppPath}...`
   );
   for (let path of getPathsToTranspile()) {
     transpileCoffeeScriptPath(path);

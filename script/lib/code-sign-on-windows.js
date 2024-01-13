@@ -10,7 +10,7 @@ module.exports = function(filesToSign) {
     !process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH
   ) {
     console.log(
-      'Skipping code signing because the ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL environment variable is not defined'
+      'NOTE: Skipping code signing because the ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL environment variable is not defined'
         .gray
     );
     return;
@@ -26,7 +26,7 @@ module.exports = function(filesToSign) {
   }
   try {
     for (const fileToSign of filesToSign) {
-      console.log(`Code-signing executable at ${fileToSign}`);
+      console.log(`Code-signing executable at ${fileToSign}...`);
       signFile(fileToSign);
     }
   } finally {

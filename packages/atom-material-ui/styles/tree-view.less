@@ -1,0 +1,38 @@
+.tree-view {
+    font-size: 1em;
+    background: @tree-view-background-color;
+
+    .selected::before {
+        background: fade(@text-color, 5%);
+    }
+
+    &:focus {
+        .selected::before {
+            background: @base-color;
+        }
+    }
+
+    .amu-panel-contrast & {
+        background-color: darken(@app-background-color, 1.5%);
+    }
+}
+
+.tree-view-resizer {
+    .tree-view-resize-handle {
+        width: .5rem;
+    }
+}
+
+.focusable-panel {
+    opacity: 1;
+
+    &:focus {
+        .selected {
+            color: @accent-text-color;
+
+            &::before {
+                background: @base-color;
+            }
+        }
+    }
+}

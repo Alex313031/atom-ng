@@ -44,8 +44,8 @@ if (args.resourcePath) {
   const stableResourcePath = path.dirname(path.dirname(__dirname));
   const defaultRepositoryPath = path.join(
     app.getPath('home'),
-    'github',
-    'atom'
+    'alex313031',
+    'atom-ng'
   );
 
   if (process.env.ATOM_DEV_RESOURCE_PATH) {

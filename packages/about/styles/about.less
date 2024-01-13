@@ -20,9 +20,18 @@
     cursor: default;
   }
 
+  a {
+    // Underline all links
+    text-decoration: underline;
+  }
+
   a:focus {
     // Don't use Bootstrap default here
     color: inherit;
+  }
+
+  a:active {
+    color: lighten(@text-color, 30%);
   }
 
   img, a {
@@ -35,30 +44,37 @@
 
   // used to group different elements
   .group-start {
-    margin-top: 4em;
+    margin-top: 2em;
   }
   .group-item {
     margin-top: 1.5em;
+  }
+  .group-item-end {
+    margin-bottom: 1.5em;
+  }
+  .group-item-octocat {
+    margin-top: 0em;
+    margin-bottom: 0em;
   }
 }
 
 .about-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
 }
 
 // Header --------------------------------
 
 .about-atom-io:hover {
   .about-logo {
-    color: @atom-green;
+    color: @atom-purple;
   }
 }
 
 .about-logo {
   display: block;
   width: 100%;
-  max-width: 280px;
+  max-width: 300px;
   margin: 0 auto 1em auto;
   color: @text-color-highlight;
   transition: color 0.2s;
@@ -82,6 +98,9 @@
 .about-more-version {
   color: @text-color-subtle;
   font-size: .9em;
+  &:hover {
+    color: lighten(@text-color-subtle, 15%);
+  }
 }
 
 .about-header-release-notes {
@@ -119,6 +138,7 @@
 
 .about-updates-label {
   color: @text-color-subtle;
+  margin-right: -1em;
   &.is-strong {
     color: @text-color;
   }
@@ -144,6 +164,7 @@
 // Love --------------------------------
 
 .about-love {
+  color: @text-color;
   .icon::before {
     // Make these octicons look good inlined with text
     position: relative;
@@ -158,12 +179,76 @@
     font-size: 3.6em;
     height: .36em;
   }
+
+  &:hover {
+    color: lighten(@text-color, 15%);
+  }
+
+  .author {
+    font-size: 1.05em;
+  }
 }
 
 .about-credits {
   color: @text-color-subtle;
+  .icon::before {
+    // Make these octicons look good inlined with text
+    position: relative;
+    width: auto;
+    height: auto;
+    margin-right: 0;
+    font-size: 1.5em;
+    vertical-align: text-top;
+  }
+
+  .icon-logo-github::before {
+    font-size: 3.6em;
+    height: .36em;
+  }
+
+  &:hover {
+    color: lighten(@text-color-subtle, 15%);
+  }
+
+  .author {
+    font-size: 1.05em;
+  }
 }
 
+.about-octocat {
+  color: @text-color-subtle;
+  .icon::before {
+    // Make these octicons look good inlined with text
+    position: relative;
+    width: auto;
+    height: auto;
+    margin-right: 0;
+    font-size: 1.5em;
+    vertical-align: text-top;
+  }
+
+  &:hover {
+    color: lighten(@text-color-subtle, 15%);
+  }
+  &:active {
+    color: lighten(@text-color-subtle, 30%);
+  }
+
+  .octocat {
+    width: 350px;
+    height: auto;
+    display: block;
+    margin-top: 16px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(0, 0, 0, 0);
+    content: url('atom://about/assets/Octocat.png');
+    &:active {
+      border: 1px solid @atom-purple;
+    }
+  }
+}
 
 // the blue squirrel --------------------------------
 

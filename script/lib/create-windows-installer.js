@@ -7,19 +7,21 @@ const path = require('path');
 
 const CONFIG = require('../config');
 
+require('colors');
+
 module.exports = packagedAppPath => {
   const archSuffix = process.arch === 'ia32' ? '' : '-' + process.arch;
   const updateUrlPrefix =
-    process.env.ATOM_UPDATE_URL_PREFIX || 'https://atom.io';
+    process.env.ATOM_UPDATE_URL_PREFIX || 'https://github.com/Alex313031/atom-ng';
   const options = {
     name: CONFIG.channelName,
     title: CONFIG.appName,
     exe: CONFIG.executableName,
     appDirectory: packagedAppPath,
-    authors: 'GitHub Inc.',
-    iconUrl: `https://raw.githubusercontent.com/atom/atom/master/resources/app-icons/${
-      CONFIG.channel
-    }/atom.ico`,
+    authors: 'Alex313031 & GitHub Inc.',
+    owners: 'Alex313031',
+    description: 'Atom-ng Installer',
+    iconUrl: `https://raw.githubusercontent.com/Alex313031/atom-ng/master/resources/app-icons/${CONFIG.channel}/atom.ico`,
     loadingGif: path.join(
       CONFIG.repositoryRootPath,
       'resources',
@@ -28,10 +30,10 @@ module.exports = packagedAppPath => {
     ),
     outputDirectory: CONFIG.buildOutputPath,
     noMsi: true,
-    remoteReleases: `${updateUrlPrefix}/api/updates${archSuffix}?version=${
-      CONFIG.computedAppVersion
-    }`,
-    setupExe: `AtomSetup${process.arch === 'x64' ? '-x64' : ''}.exe`,
+    // Don't try to use RELEASES file or enable delta updates
+    noDelta: true,
+    // Set setup executable name
+    setupExe: `Atom-ng_${CONFIG.appMetadata.version}_Setup_${process.arch === 'x64' ? 'x64' : 'x32'}.exe`,
     setupIcon: path.join(
       CONFIG.repositoryRootPath,
       'resources',
@@ -48,13 +50,13 @@ module.exports = packagedAppPath => {
     }
 
     let appName =
-      CONFIG.channel === 'stable' ? 'atom' : `atom-${CONFIG.channel}`;
+      CONFIG.channel === 'stable' ? 'atom-ng' : `atom-ng-${CONFIG.channel}`;
     for (let nupkgPath of glob.sync(
       `${CONFIG.buildOutputPath}/${appName}-*.nupkg`
     )) {
       if (!nupkgPath.includes(CONFIG.computedAppVersion)) {
         console.log(
-          `Deleting downloaded nupkg for previous version at ${nupkgPath} to prevent it from being stored as an artifact`
+          `Note: Deleting downloaded nupkg for previous version at ${nupkgPath} to prevent it from being stored as an artifact`
         );
         fs.unlinkSync(nupkgPath);
       } else {

@@ -1,0 +1,169 @@
+{
+   "scripts": {
+      "test": "atom --test spec",
+      "build": "npm --production install",
+      "clean": "rm -r -f node_modules"
+   },
+   "bugs": {
+      "url": "https://github.com/Alex313031/atom-ng-browser/issues"
+   },
+   "description": "Atom-ng-Browser is an extension to browse the web, preview files, auto-reload, and search Google within Atom-ng.",
+   "devDependencies": {},
+   "engines": {
+      "atom": ">=1.57.0 <2.0.0"
+   },
+   "homepage": "https://github.com/Alex313031/atom-ng-browser#readme",
+   "keywords": [
+      "atom",
+      "atom-ng",
+      "browser",
+      "chromium",
+      "electron",
+      "preview",
+      "live reload",
+      "web view",
+      "html preview"
+   ],
+   "license": "MIT",
+   "main": "./lib/atom-browser",
+   "name": "atom-browser",
+   "optionalDependencies": {},
+   "readme": "Atom-ng-Browser is an extension to browse the web, preview files, auto-reload, and search Google within Atom-ng.",
+   "readmeFilename": "README.md",
+   "repository": {
+      "type": "git",
+      "url": "git@github.com:Alex313031/atom-ng-browser.git"
+   },
+   "version": "2.1.5",
+   "_atomModuleCache": {
+      "version": 1,
+      "dependencies": [],
+      "extensions": {
+         ".js": [
+            "lib\\atom-browser-view.js",
+            "lib\\atom-browser.js"
+         ],
+         ".json": [
+            "package.json"
+         ]
+      },
+      "folders": []
+   },
+   "consumedServices": {
+      "status-bar": {
+         "versions": {
+            "^1.0.0": "consumeStatusBar"
+         }
+      }
+   },
+   "configSchema": {
+      "reloadByDefault": {
+         "title": "Reload by default",
+         "description": "Toggles auto reload to be on by default",
+         "type": "boolean",
+         "default": false
+      },
+      "reloadDelay": {
+         "title": "Reload on save delay",
+         "description": "Time in ms to wait before reloading (1000ms = 1second)",
+         "type": "integer",
+         "default": 250
+      },
+      "showZoomButtons": {
+         "title": "Show zoom buttons",
+         "description": "Toggles zoom buttons",
+         "type": "boolean",
+         "default": true
+      },
+      "showZoomFactor": {
+         "title": "Zoom Factor",
+         "description": "Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.",
+         "type": "number",
+         "default": 1,
+         "minimum": 0.1,
+         "maximum": 5
+      },
+      "showIcon": {
+         "title": "Show Statusbar Icon",
+         "description": "Toggles the statusbar icon",
+         "type": "boolean",
+         "default": true
+      },
+      "showBackground": {
+         "title": "Show Background",
+         "description": "The default background is dark grey. Enable this for white",
+         "type": "boolean",
+         "default": false
+      },
+      "autoPrefix": {
+         "title": "Prefix HTTPS",
+         "description": "Prefix urls with HTTP or HTTPS",
+         "type": "string",
+         "default": "http",
+         "enum": [
+            {
+               "value": "http",
+               "description": "http"
+            },
+            {
+               "value": "https",
+               "description": "https"
+            }
+         ]
+      },
+      "defaultLocation": {
+         "title": "Default Location",
+         "description": "Choose the default dock location for the Atom-ng Browser: right or bottom",
+         "type": "string",
+         "default": "bottom",
+         "enum": [
+            {
+               "value": "right",
+               "description": "Docked Right"
+            },
+            {
+               "value": "bottom",
+               "description": "Docked Bottom"
+            }
+         ]
+      },
+      "initialUrl": {
+         "title": "Initial URL",
+         "description": "The initial URL to start at",
+         "type": "string",
+         "default": "https://thorium.rocks/atom-ng/"
+      },
+      "z_experimental": {
+         "type": "object",
+         "title": "⚠️ Experimental Features",
+         "properties": {
+            "emitterEnabled": {
+               "title": "Save ScrollY on reload",
+               "description": "Save ScrollY on reload. Enables emitting data from webview to atom-ng",
+               "type": "boolean",
+               "default": "false"
+            },
+            "devtools": {
+               "title": "Automatically open devtools",
+               "type": "boolean",
+               "default": "false"
+            },
+            "url_overwrite": {
+               "title": "URL Overwrites",
+               "description": "Paths to overwrite when right click previewing a file. Allows you to map a filepath to your localhost!",
+               "type": "string",
+               "default": "[ { \"replace\": \"example/filepath\", \"with\": \"localhost:8000\" } ]"
+            },
+            "static_server": {
+               "title": "Static Serve",
+               "description": "Preview files from a local webserver",
+               "type": "boolean",
+               "default": "false"
+            }
+         }
+      }
+   },
+   "dependencies": {
+      "express": "^4.17.3"
+   }
+}

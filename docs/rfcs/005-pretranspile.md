@@ -26,7 +26,7 @@ The `npm version` call will still be skipped if the `--tag` is provided, so manu
 
 ### Package installation
 
-When a user installs a package from atom.io, atom.io first checks to see if it has a precompiled tarball in its S3 bucket. If one is found, the artifact's public URL is returned as the `dist` field in the [API response](https://flight-manual.atom.io/atom-server-side-apis/sections/atom-package-server-api/#get-apipackagespackage_nameversionsversion_name). Otherwise, the existing logic is used to return the GitHub tag tarball URL that's returned now.
+When a user installs a package from atom.io, atom.io first checks to see if it has a precompiled tarball in its S3 bucket. If one is found, the artifact's public URL is returned as the `dist` field in the [API response](https://flight-manual-atom-io.github.io/atom-server-side-apis/sections/atom-package-server-api/#get-apipackagespackage_nameversionsversion_name). Otherwise, the existing logic is used to return the GitHub tag tarball URL that's returned now.
 
 ## Drawbacks
 

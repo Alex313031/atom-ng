@@ -28,6 +28,11 @@ module.exports = class AboutView extends EtchComponent {
     atom.clipboard.write(this.props.currentNodeVersion);
   }
 
+  handleV8VersionClick(e) {
+    e.preventDefault();
+    atom.clipboard.write(this.props.currentV8Version);
+  }
+
   handleReleaseNotesClick(e) {
     e.preventDefault();
     shell.openExternal(
@@ -45,13 +50,13 @@ module.exports = class AboutView extends EtchComponent {
 
   handleTermsOfUseClick(e) {
     e.preventDefault();
-    shell.openExternal('https://atom.io/terms');
+    shell.openExternal('https://docs.github.com/articles/github-terms-of-service');
   }
 
   handleHowToUpdateClick(e) {
     e.preventDefault();
     shell.openExternal(
-      'https://flight-manual.atom.io/getting-started/sections/installing-atom/'
+      'https://flight-manual-atom-io.github.io/getting-started/sections/installing-atom/'
     );
   }
 
@@ -71,6 +76,22 @@ module.exports = class AboutView extends EtchComponent {
     }
   }
 
+  handleShowOctocatClick(e) {
+    e.preventDefault();
+    var showOctocatDiv = document.querySelector('.show-octocat');
+    var showOctocatText = document.querySelector('.about-octocat-expand');
+    switch (showOctocatText.textContent) {
+      case 'Show Octocat!':
+        showOctocatDiv.classList.toggle('hide');
+        showOctocatText.textContent = 'Hide Octocat';
+        break;
+      case 'Hide Octocat':
+        showOctocatDiv.classList.toggle('hide');
+        showOctocatText.textContent = 'Show Octocat!';
+        break;
+    }
+  }
+
   render() {
     return $.div(
       { className: 'pane-item native-key-bindings about' },
@@ -79,7 +100,7 @@ module.exports = class AboutView extends EtchComponent {
         $.header(
           { className: 'about-header' },
           $.a(
-            { className: 'about-atom-io', href: 'https://atom.io' },
+            { className: 'about-atom-io', title: 'Atom-ng Banner (Click to go to Atom-ng\'s Homepage)', href: 'https://thorium.rocks/atom-ng/' },
             $(AtomLogo)
           ),
           $.div(
@@ -90,7 +111,7 @@ module.exports = class AboutView extends EtchComponent {
                 onclick: this.handleAtomVersionClick.bind(this)
               },
               $.span(
-                { className: 'about-version' },
+                { className: 'about-version', title: 'Atom-ng Version' },
                 `${this.props.currentAtomVersion} ${process.arch}`
               ),
               $.span({ className: 'icon icon-clippy about-copy-version' })
@@ -124,7 +145,7 @@ module.exports = class AboutView extends EtchComponent {
                   { className: 'about-more-version' },
                   `Electron: ${this.props.currentElectronVersion} `
                 ),
-                $.span({ className: 'icon icon-clippy about-copy-version' })
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy Electron Version' })
               )
             ),
             $.div(
@@ -136,9 +157,23 @@ module.exports = class AboutView extends EtchComponent {
                 },
                 $.span(
                   { className: 'about-more-version' },
-                  `Chrome: ${this.props.currentChromeVersion} `
+                  `Chromium: ${this.props.currentChromeVersion} `
                 ),
-                $.span({ className: 'icon icon-clippy about-copy-version' })
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy Chromium Version' })
+              )
+            ),
+            $.div(
+              { className: 'about-more-info' },
+              $.span(
+                {
+                  className: 'about-version-container inline-block v8',
+                  onclick: this.handleV8VersionClick.bind(this)
+                },
+                $.span(
+                  { className: 'about-more-version' },
+                  `V8: ${this.props.currentV8Version} `
+                ),
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy V8 Version' })
               )
             ),
             $.div(
@@ -152,7 +187,7 @@ module.exports = class AboutView extends EtchComponent {
                   { className: 'about-more-version' },
                   `Node: ${this.props.currentNodeVersion} `
                 ),
-                $.span({ className: 'icon icon-clippy about-copy-version' })
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy NodeJS Version' })
               )
             )
           )
@@ -193,17 +228,26 @@ module.exports = class AboutView extends EtchComponent {
         $.span({ className: 'inline' }, ' with '),
         $.span({ className: 'icon icon-heart' }),
         $.span({ className: 'inline' }, ' by '),
-        $.a({ className: 'icon icon-logo-github', href: 'https://github.com' })
+        $.a(
+          { className: 'author', title: 'Author', href: 'https://github.com/Alex313031/' },
+          'Alex313031'
+        )
       ),
 
       $.div(
-        { className: 'about-credits group-item' },
-        $.span({ className: 'inline' }, 'And the awesome '),
+        { className: 'about-credits group-item group-item-end' },
+        $.span({ className: 'inline' }, 'And with care by '),
         $.a(
-          { href: 'https://github.com/atom/atom/contributors' },
-          'Atom Community'
+          { className: 'author', title: 'GitHub', href: 'https://github.com/' },
+          'GitHub'
         )
-      )
+      ),
+
+      $.div(
+        { className: 'about-octocat group-item-octocat' },
+        $.span({ className: 'inline about-octocat-expand', onclick: this.handleShowOctocatClick.bind(this) }, 'Show Octocat!'),
+        $.div({ className: 'octocat hide show-octocat', title: "Octocat" })
+      )      
     );
   }
 

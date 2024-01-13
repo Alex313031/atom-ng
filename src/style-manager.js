@@ -359,7 +359,7 @@ function transformDeprecatedShadowDOMSelectors(css, context) {
       deprecationMessage +=
         'pseudo-selectors, and prepend all your syntax selectors with `syntax--`. ';
       deprecationMessage +=
-        'To prevent breakage with existing style sheets, Atom will automatically ';
+        'To prevent breakage with existing style sheets, Atom-ng will automatically ';
       deprecationMessage += 'upgrade the following selectors:\n\n';
       deprecationMessage +=
         transformedSelectors

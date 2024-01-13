@@ -1,0 +1,54 @@
+.input-checkbox {
+    border: .125em solid @base-color;
+    background: none;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+
+    &:active:not(:checked) {
+        background-color: fade(@base-color, 25%);
+    }
+
+    &:checked {
+        background: @base-color;
+
+        &::after,
+        &::before {
+            top: 1em;
+            left: .5em;
+            opacity: 0;
+            border: .1em solid @accent-text-color;
+            background-color: @accent-text-color;
+            animation: fadeIn 125ms linear;
+            animation-fill-mode: forwards;
+        }
+
+        &::before {
+            width: .5em;
+        }
+
+        &::after {
+            width: .85em;
+            animation-delay: 125ms;
+        }
+    }
+
+    &:focus {
+        box-shadow: 0 0 1em fade(@base-color, 30%);
+    }
+}
+
+.checkbox {
+    padding-left: 2.5em;
+
+    .setting-title, .setting-description {
+        padding-left: 1rem;
+    }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

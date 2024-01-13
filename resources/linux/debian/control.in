@@ -7,6 +7,6 @@ Section: devel
 Priority: optional
 Architecture: <%= arch %>
 Installed-Size: <%= installedSize %>
-Maintainer: GitHub <atom@github.com>
+Maintainer: Alex313031 <https://github.com/Alex313031/atom-ng>
 Description: <%= description %>
- Atom is a free and open source text editor that is modern, approachable, and hackable to the core.
+ Atom-ng is a free and open source text editor that is modern, approachable, and hackable to the core.

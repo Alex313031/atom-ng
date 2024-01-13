@@ -87,7 +87,7 @@ module.exports = class ProtocolHandlerInstaller {
         dismissable: true,
         icon: 'link',
         description:
-          'Atom is not currently set as the default handler for atom:// URIs. Would you like Atom to handle ' +
+          'Atom-ng is not currently set as the default handler for atom:// URIs. Would you like Atom-ng to handle ' +
           'atom:// URIs?',
         buttons: [
           {

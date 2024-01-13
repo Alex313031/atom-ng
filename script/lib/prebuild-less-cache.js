@@ -16,7 +16,7 @@ module.exports = function() {
     CONFIG.intermediateAppPath,
     'less-compile-cache'
   );
-  console.log(`Generating pre-built less cache in ${cacheDirPath}`);
+  console.log(`Generating pre-built less cache in ${cacheDirPath}...`);
 
   // Group bundled packages into UI themes, syntax themes, and non-theme packages
   const uiThemes = [];

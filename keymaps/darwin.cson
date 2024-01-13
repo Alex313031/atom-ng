@@ -33,7 +33,7 @@
   'ctrl-shift-right': 'pane:move-item-right'
 
   # Sublime Parity
-  'cmd-,': 'application:show-settings'
+  'alt-s': 'application:show-settings'
   'cmd-shift-n': 'application:new-window'
   'cmd-shift-w': 'window:close'
   'cmd-o': 'application:open'

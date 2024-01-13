@@ -13,15 +13,15 @@ module.exports = function parseCommandLine(processArgs) {
   const options = yargs(filteredArgs).wrap(yargs.terminalWidth());
   const version = app.getVersion();
   options.usage(
-    dedent`Atom Editor v${version}
+    dedent`Atom-ng Editor v${version}
 
     Usage:
-      atom
-      atom [options] [path ...]
-      atom file[:line[:column]]
+      atom-ng
+      atom-ng [options] [path ...]
+      atom-ng file[:line[:column]]
 
     One or more paths to files or folders may be specified. If there is an
-    existing Atom window that contains all of the given folders, the paths
+    existing Atom-ng window that contains all of the given folders, the paths
     will be opened in that window. Otherwise, they will be opened in a new
     window.
 
@@ -32,8 +32,8 @@ module.exports = function parseCommandLine(processArgs) {
 
     Environment Variables:
 
-      ATOM_DEV_RESOURCE_PATH  The path from which Atom loads source code in dev mode.
-                              Defaults to \`~/github/atom\`.
+      ATOM_DEV_RESOURCE_PATH  The path from which Atom-ng loads source code in dev mode.
+                              Defaults to \`~/alex313031/atom-ng\`.
 
       ATOM_HOME               The root path for all configuration files and folders.
                               Defaults to \`~/.atom\`.`
@@ -77,13 +77,19 @@ module.exports = function parseCommandLine(processArgs) {
     .string('r')
     .describe(
       'r',
-      'Set the path to the Atom source directory and enable dev-mode.'
+      'Set the path to the Atom-ng source directory and enable dev-mode.'
     );
   options
     .boolean('safe')
     .describe(
       'safe',
       'Do not load packages from ~/.atom/packages or ~/.atom/dev/packages.'
+    );
+  options
+    .boolean('fps')
+    .describe(
+      'fps',
+      'Show a FPS counter via Chromium APIs.'
     );
   options
     .boolean('benchmark')
@@ -125,7 +131,7 @@ module.exports = function parseCommandLine(processArgs) {
   options.string('user-data-dir');
   options
     .boolean('clear-window-state')
-    .describe('clear-window-state', 'Delete all Atom environment state.');
+    .describe('clear-window-state', 'Delete all Atom-ng environment state.');
   options
     .boolean('enable-electron-logging')
     .describe(
@@ -135,7 +141,7 @@ module.exports = function parseCommandLine(processArgs) {
   options.boolean('uri-handler');
   options
     .version(
-      dedent`Atom    : ${version}
+      dedent`Atom-ng    : ${version}
              Electron: ${process.versions.electron}
              Chrome  : ${process.versions.chrome}
              Node    : ${process.versions.node}`
@@ -156,6 +162,7 @@ module.exports = function parseCommandLine(processArgs) {
 
   const addToLastWindow = args['add'];
   const safeMode = args['safe'];
+  const fpsCounter = args['fps'];
   const benchmark = args['benchmark'];
   const benchmarkTest = args['benchmark-test'];
   const test = args['test'];
@@ -224,6 +231,7 @@ module.exports = function parseCommandLine(processArgs) {
     pidToKillWhenClosed,
     devMode,
     safeMode,
+    fpsCounter,
     newWindow,
     logFile,
     userDataDir,

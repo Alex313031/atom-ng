@@ -10,7 +10,7 @@ module.exports = function(ci) {
     // postinstall script. (Deduping during `npm ci` runs is broken.)
     process.env.NO_APM_DEDUPE = 'true';
   }
-  console.log('Installing apm');
+  console.log('Installing apm...');
   childProcess.execFileSync(
     CONFIG.getLocalNpmBinPath(),
     ['--global-style', '--loglevel=error', ci ? 'ci' : 'install'],

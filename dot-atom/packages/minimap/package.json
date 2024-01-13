@@ -1,0 +1,96 @@
+{
+  "name": "minimap",
+  "version": "4.40.4",
+  "description": "A side-docked preview of the full document.",
+  "repository": "https://github.com/Alex313031/minimap-ng",
+  "license": "MIT",
+  "author": "Alex313031 <Alex313031@gmail.com>",
+  "contributors": [
+    {
+      "name": "Fangdun Cai",
+      "email": "cfddream@gmail.com"
+    },
+    {
+      "name": "Cédric Néhémie",
+      "email": "cedric.nehemie@gmail.com"
+    },
+    {
+      "name": "Amin Yahyaabadi",
+      "email": "aminyahyaabadi74@gmail.com"
+    }
+  ],
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "npm install && cross-env NODE_ENV=production parcel build --target main ./lib/main.js && npm run postbuild",
+    "postbuild": "rm -rf -v node_modules && npm --production install",
+    "build.test": "npm run clean && cross-env NODE_ENV=test parcel build --target main ./lib/main.js",
+    "bump": "ncu -u",
+    "clean": "rm -rf -v dist .parcel-cache node_modules",
+    "dev": "cross-env NODE_ENV=development parcel watch --target main ./lib/main.js",
+    "esdoc": "esdoc -c esdoc.json",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "test": "atom --test spec",
+    "test.format": "prettier . --check",
+    "test.lint": "eslint ."
+  },
+  "prettier": "prettier-config-atomic",
+  "dependencies": {
+    "atom-ide-base": "^3.3.0",
+    "atom-utils-plus": "^0.11.0",
+    "delegato": "^1.0.0",
+    "element-resize-detector": "^1.2.4",
+    "fs-plus": "^3.1.1",
+    "mixto": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/atom": "^1.40.12",
+    "@types/jasmine": "3.10.3",
+    "cross-env": "^7.0.3",
+    "esdoc": "^1.1.0",
+    "esdoc-es7-plugin": "^0.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-atomic": "^1.17.0",
+    "jasmine-expect": "^5.0.0",
+    "npm-check-updates": "latest",
+    "parcel": "2.0.0-nightly.760",
+    "prettier-config-atomic": "^3.0.5",
+    "shx": "^0.3.4",
+    "terser-config-atomic": "^0.1.1",
+    "underscore-plus": "^1.7.0"
+  },
+  "engines": {
+    "atom": ">=1.52.0",
+    "electron": ">=11.5.0"
+  },
+  "keywords": [
+    "minimap",
+    "overview"
+  ],
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
+  "providedServices": {
+    "minimap": {
+      "description": "Exposes the minimap API to other packages",
+      "versions": {
+        "1.0.0": "provideMinimapServiceV1"
+      }
+    }
+  },
+  "targets": {
+    "main": {
+      "context": "electron-renderer",
+      "includeNodeModules": {
+        "atom": false,
+        "electron": false,
+        "fs-plus": false
+      },
+      "outputFormat": "commonjs",
+      "isLibrary": true
+    }
+  },
+  "viewProviders": [
+    "minimapViewProvider"
+  ]
+}

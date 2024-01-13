@@ -14,22 +14,32 @@ const template = require('lodash.template');
 const CONFIG = require('../config');
 const HOST_ARCH = hostArch();
 
+require('colors');
+
 module.exports = function() {
   const appName = getAppName();
   console.log(
-    `Running electron-packager on ${
+    ` > Running electron-packager in ${
       CONFIG.intermediateAppPath
-    } with app name "${appName}"`
+    } with app name ` + `"${appName}"`.green
   );
   return runPackager({
-    appBundleId: 'com.github.atom',
-    appCopyright: `Copyright © 2014-${new Date().getFullYear()} GitHub, Inc. All rights reserved.`,
+    appBundleId: 'com.alex313031.atom',
+    appCopyright: `Copyright © 2014-${new Date().getFullYear()} Alex313031 & GitHub Inc. All rights reserved.`,
     appVersion: CONFIG.appMetadata.version,
     arch: process.platform === 'darwin' ? 'x64' : HOST_ARCH, // OS X is 64-bit only
     asar: { unpack: buildAsarUnpackGlobExpression() },
     buildVersion: CONFIG.appMetadata.version,
     derefSymlinks: false,
-    download: { cache: CONFIG.electronDownloadPath },
+    // Use my optimized Electron builds!
+    download: { quiet: false, disableChecksumSafetyCheck: true, unsafelyDisableChecksums: true, autoDownload: false, cacheRoot: CONFIG.electronDownloadPath, mirrorOptions: 
+        { mirror: 'https://github.com/Alex313031/electron-12.2.3/releases/download/' }
+    },
+    quiet: false,
+    disableChecksumSafetyCheck: true,
+    unsafelyDisableChecksums: true,
+    autoDownload: false,
+    cacheRoot: CONFIG.electronDownloadPath,
     dir: CONFIG.intermediateAppPath,
     electronVersion: CONFIG.appMetadata.electronVersion,
     extendInfo: path.join(
@@ -38,7 +48,7 @@ module.exports = function() {
       'mac',
       'atom-Info.plist'
     ),
-    helperBundleId: 'com.github.atom.helper',
+    helperBundleId: 'com.alex313031.atom.helper',
     icon: path.join(
       CONFIG.repositoryRootPath,
       'resources',
@@ -53,8 +63,9 @@ module.exports = function() {
     // Atom doesn't have devDependencies, but if prune is true, it will delete the non-standard packageDependencies.
     prune: false,
     win32metadata: {
-      CompanyName: 'GitHub, Inc.',
-      FileDescription: 'Atom',
+      CompanyName: 'Alex313031',
+      FileDescription: 'Atom-ng',
+      InternalName: CONFIG.internalName,
       ProductName: CONFIG.appName
     }
   }).then(packagedAppPath => {
@@ -75,7 +86,7 @@ module.exports = function() {
 
     return copyNonASARResources(packagedAppPath, bundledResourcesPath).then(
       () => {
-        console.log(`Application bundle created at ${packagedAppPath}`);
+        console.log(`Application bundle created at ` + `${packagedAppPath}`.green);
         return packagedAppPath;
       }
     );
@@ -83,7 +94,7 @@ module.exports = function() {
 };
 
 function copyNonASARResources(packagedAppPath, bundledResourcesPath) {
-  console.log(`Copying non-ASAR resources to ${bundledResourcesPath}`);
+  console.log(`Copying non-ASAR resources to ${bundledResourcesPath}...`);
   fs.copySync(
     path.join(
       CONFIG.repositoryRootPath,
@@ -93,6 +104,16 @@ function copyNonASARResources(packagedAppPath, bundledResourcesPath) {
     ),
     path.join(bundledResourcesPath, 'app', 'apm'),
     { filter: includePathInPackagedApp }
+  );
+  // Enable Widevine
+  fs.copySync(
+    path.join(
+      CONFIG.repositoryRootPath,
+      'resources',
+      'WidevineCDM',
+      'WidevineCdm'
+    ),
+    path.join(packagedAppPath, 'WidevineCdm')
   );
   if (process.platform !== 'win32') {
     // Existing symlinks on user systems point to an outdated path, so just symlink it to the real location of the apm binary.
@@ -128,7 +149,24 @@ function copyNonASARResources(packagedAppPath, bundledResourcesPath) {
         'png',
         '1024.png'
       ),
-      path.join(packagedAppPath, 'atom.png')
+      path.join(packagedAppPath, 'atom-ng.png')
+    );
+    // Add portable executable and readme
+    fs.copySync(
+      path.join(
+        CONFIG.repositoryRootPath,
+        'portable',
+        'RUN'
+      ),
+      path.join(packagedAppPath, 'ATOM-NG_PORTABLE')
+    );
+    fs.copySync(
+      path.join(
+        CONFIG.repositoryRootPath,
+        'portable',
+        'README.txt'
+      ),
+      path.join(packagedAppPath, 'README.md')
     );
   } else if (process.platform === 'win32') {
     [
@@ -143,6 +181,23 @@ function copyNonASARResources(packagedAppPath, bundledResourcesPath) {
         path.join(CONFIG.repositoryRootPath, 'resources', 'win', file),
         path.join(bundledResourcesPath, 'cli', file)
       )
+    );
+    // Add portable bat and readme
+    fs.copySync(
+      path.join(
+        CONFIG.repositoryRootPath,
+        'portable',
+        'RUN.bat'
+      ),
+      path.join(packagedAppPath, 'ATOM-NG_PORTABLE.bat')
+    );
+    fs.copySync(
+      path.join(
+        CONFIG.repositoryRootPath,
+        'portable',
+        'README.txt'
+      ),
+      path.join(packagedAppPath, 'README.md')
     );
 
     // Customize atom.cmd for the channel-specific atom.exe name (e.g. atom-beta.exe)
@@ -166,24 +221,42 @@ function setAtomHelperVersion(packagedAppPath) {
     'Contents',
     'Info.plist'
   );
-  console.log(`Setting Atom Helper Version for ${helperPListPath}`);
-  spawnSync('/usr/libexec/PlistBuddy', [
-    '-c',
-    `Add CFBundleVersion string ${CONFIG.appMetadata.version}`,
-    helperPListPath
-  ]);
-  spawnSync('/usr/libexec/PlistBuddy', [
-    '-c',
-    `Add CFBundleShortVersionString string ${CONFIG.appMetadata.version}`,
-    helperPListPath
-  ]);
+  console.log(`Setting Atom-ng Helper Version for ${helperPListPath}...`);
+  try {
+    spawnSync('/usr/libexec/PlistBuddy', [
+      '-c',
+      `Add CFBundleVersion string ${CONFIG.appMetadata.version}`,
+      helperPListPath
+    ]);
+  } catch (error) {
+    spawnSync('/usr/libexec/PlistBuddy', [
+      '-c',
+      `Set CFBundleVersion string ${CONFIG.appMetadata.version}`,
+      helperPListPath
+    ]);
+  }
+  try {
+    spawnSync('/usr/libexec/PlistBuddy', [
+      '-c',
+      `Add CFBundleShortVersionString string ${CONFIG.appMetadata.version}`,
+      helperPListPath
+    ]);
+  } catch (error) {
+    spawnSync('/usr/libexec/PlistBuddy', [
+      '-c',
+      `Set CFBundleShortVersionString string ${CONFIG.appMetadata.version}`,
+      helperPListPath
+    ]);
+  }
 }
 
 function chmodNodeFiles(packagedAppPath) {
-  console.log(`Changing permissions for node files in ${packagedAppPath}`);
+  console.log(`Changing exec permissions for node files in ${packagedAppPath}...`);
   childProcess.execSync(
     `find "${packagedAppPath}" -type f -name *.node -exec chmod a-x {} \\;`
   );
+  console.log(`Setting permission 4755 on 'chrome-sandbox'...`);
+  fs.chmodSync(path.join(packagedAppPath, 'chrome-sandbox'), '4755');
 }
 
 function buildAsarUnpackGlobExpression() {
@@ -197,7 +270,8 @@ function buildAsarUnpackGlobExpression() {
     path.join('**', 'node_modules', 'dugite', 'git', '**'),
     path.join('**', 'node_modules', 'github', 'bin', '**'),
     path.join('**', 'node_modules', 'vscode-ripgrep', 'bin', '**'),
-    path.join('**', 'resources', 'atom.png')
+    path.join('**', 'resources', 'atom-ng.png'),
+    path.join('**', 'resources', 'atom-ng-pixmap.png')
   ];
 
   return `{${unpack.join(',')}}`;
@@ -207,9 +281,9 @@ function getAppName() {
   if (process.platform === 'darwin') {
     return CONFIG.appName;
   } else if (process.platform === 'win32') {
-    return CONFIG.channel === 'stable' ? 'atom' : `atom-${CONFIG.channel}`;
+    return CONFIG.channel === 'stable' ? 'atom-ng' : `atom-ng-${CONFIG.channel}`;
   } else {
-    return 'atom';
+    return 'atom-ng';
   }
 }
 
@@ -218,7 +292,7 @@ async function runPackager(options) {
 
   assert(
     packageOutputDirPaths.length === 1,
-    'Generated more than one electron application!'
+    'Generated more than one electron application!'.red
   );
 
   return renamePackagedAppDir(packageOutputDirPaths[0]);
@@ -236,7 +310,7 @@ function renamePackagedAppDir(packageOutputDirPath) {
     );
   } else if (process.platform === 'linux') {
     const appName =
-      CONFIG.channel !== 'stable' ? `atom-${CONFIG.channel}` : 'atom';
+      CONFIG.channel !== 'stable' ? `Atom-ng-${CONFIG.channel}` : 'Atom-ng';
     let architecture;
     if (HOST_ARCH === 'ia32') {
       architecture = 'i386';
@@ -247,14 +321,14 @@ function renamePackagedAppDir(packageOutputDirPath) {
     }
     packagedAppPath = path.join(
       CONFIG.buildOutputPath,
-      `${appName}-${CONFIG.appMetadata.version}-${architecture}`
+      `${appName}_${CONFIG.appMetadata.version}_${architecture}`
     );
     if (fs.existsSync(packagedAppPath)) fs.removeSync(packagedAppPath);
     fs.renameSync(packageOutputDirPath, packagedAppPath);
   } else {
     packagedAppPath = path.join(CONFIG.buildOutputPath, CONFIG.appName);
     if (process.platform === 'win32' && HOST_ARCH !== 'ia32') {
-      packagedAppPath += ` ${process.arch}`;
+      packagedAppPath += `_${CONFIG.appMetadata.version}_${process.arch}`;
     }
     if (fs.existsSync(packagedAppPath)) fs.removeSync(packagedAppPath);
     fs.renameSync(packageOutputDirPath, packagedAppPath);

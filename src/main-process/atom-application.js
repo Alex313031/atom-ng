@@ -211,6 +211,9 @@ module.exports = class AtomApplication extends EventEmitter {
     this.windowStack = new WindowStack();
 
     this.initializeAtomHome(process.env.ATOM_HOME);
+    
+    const configPackagesPath = path.join(process.env.ATOM_HOME, 'packages');
+    this.initializeAtomPackages(configPackagesPath);
 
     const configFilePath = fs.existsSync(
       path.join(process.env.ATOM_HOME, 'config.json')
@@ -584,20 +587,20 @@ module.exports = class AtomApplication extends EventEmitter {
     });
 
     this.on('application:open-documentation', () =>
-      shell.openExternal('http://flight-manual.atom.io')
+      shell.openExternal('https://flight-manual-atom-io.github.io/')
     );
     this.on('application:open-discussions', () =>
-      shell.openExternal('https://github.com/atom/atom/discussions')
+      shell.openExternal('https://github.com/Alex313031/atom-ng/discussions')
     );
     this.on('application:open-faq', () =>
-      shell.openExternal('https://atom.io/faq')
+      shell.openExternal('https://flight-manual-atom-io.github.io/faq')
     );
     this.on('application:open-terms-of-use', () =>
-      shell.openExternal('https://atom.io/terms')
+      shell.openExternal('https://docs.github.com/articles/github-terms-of-service')
     );
     this.on('application:report-issue', () =>
       shell.openExternal(
-        'https://github.com/atom/atom/blob/master/CONTRIBUTING.md#reporting-bugs'
+        'https://github.com/Alex313031/atom-ng/blob/master/CONTRIBUTING.md#reporting-bugs'
       )
     );
     this.on('application:search-issues', () =>
@@ -1079,6 +1082,14 @@ module.exports = class AtomApplication extends EventEmitter {
     if (!fs.existsSync(configDirPath)) {
       const templateConfigDirPath = fs.resolve(this.resourcePath, 'dot-atom');
       fs.copySync(templateConfigDirPath, configDirPath);
+    }
+  }
+
+  initializeAtomPackages(configPackagesPath) {
+	const configPackagesCheck = path.join(process.env.ATOM_HOME, 'packages', 'atom-ng-browser');
+    if (!fs.existsSync(configPackagesCheck)) {
+      const templateConfigPackagesPath = path.resolve(this.resourcePath, 'dot-atom', 'packages');
+      fs.copySync(templateConfigPackagesPath, configPackagesPath);
     }
   }
 

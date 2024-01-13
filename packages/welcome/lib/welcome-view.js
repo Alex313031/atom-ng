@@ -7,15 +7,6 @@ export default class WelcomeView {
   constructor(props) {
     this.props = props;
     etch.initialize(this);
-
-    this.element.addEventListener('click', event => {
-      const link = event.target.closest('a');
-      if (link && link.dataset.event) {
-        this.props.reporterProxy.sendEvent(
-          `clicked-welcome-${link.dataset.event}-link`
-        );
-      }
-    });
   }
 
   didChangeShowOnStartup() {
@@ -36,8 +27,8 @@ export default class WelcomeView {
       <div className="welcome">
         <div className="welcome-container">
           <header className="welcome-header">
-            <a href="https://atom.io/">
-              <svg
+            <div title="Atom-ng Banner">
+            <svg
                 className="welcome-logo"
                 width="330px"
                 height="68px"
@@ -87,8 +78,10 @@ export default class WelcomeView {
                   </g>
                 </g>
               </svg>
+              </div>
+            <a href="https://thorium.rocks/atom-ng/">
               <h1 className="welcome-title">
-                A hackable text editor for the 21<sup>st</sup> Century
+                A hyper-hackable text editor for the 21<sup>st</sup> Century
               </h1>
             </a>
           </header>
@@ -99,17 +92,17 @@ export default class WelcomeView {
               <li>
                 The{' '}
                 <a
-                  href="https://www.atom.io/docs"
+                  href="https://github.com/Alex313031/atom-ng/tree/master/docs"
                   dataset={{ event: 'atom-docs' }}
                 >
-                  Atom docs
+                  Atom-ng docs
                 </a>{' '}
                 for Guides and the API reference.
               </li>
               <li>
-                The Atom forum at{' '}
+                The Atom-ng forum at{' '}
                 <a
-                  href="https://github.com/atom/atom/discussions"
+                  href="https://github.com/Alex313031/atom-ng/discussions"
                   dataset={{ event: 'discussions' }}
                 >
                   Github Discussions
@@ -136,13 +129,13 @@ export default class WelcomeView {
                 checked={atom.config.get('welcome.showOnStartup')}
                 onchange={this.didChangeShowOnStartup}
               />
-              Show Welcome Guide when opening Atom
+              Show Welcome Guide when opening Atom-ng
             </label>
           </section>
 
           <footer className="welcome-footer">
-            <a href="https://atom.io/" dataset={{ event: 'footer-atom-io' }}>
-              atom.io
+            <a href="https://thorium.rocks/atom-ng/" dataset={{ event: 'footer-atom-io' }}>
+              Atom-ng Homepage
             </a>{' '}
             <span className="text-subtle">×</span>{' '}
             <a
@@ -150,6 +143,8 @@ export default class WelcomeView {
               href="https://github.com/"
               dataset={{ event: 'footer-octocat' }}
             />
+            <br/><br/>
+            <img class="welcome-banner" title="Welcome Banner" src="./images/intro_banner.png"></img>
           </footer>
         </div>
       </div>
@@ -161,7 +156,11 @@ export default class WelcomeView {
   }
 
   getTitle() {
-    return 'Welcome';
+    return 'Welcome!';
+  }
+
+  getIconName() {
+    return 'code';
   }
 
   isEqual(other) {

@@ -1,6 +1,6 @@
 {
   "name": "atom-test-update-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "A test update server that replicates the one on atom.io",
   "main": "run-server.js",
@@ -9,7 +9,7 @@
   },
   "author": "David Wilson",
   "dependencies": {
-    "colors": "^1.3.2",
-    "express": "^4.16.3"
+    "colors": "^1.4.0",
+    "express": "^4.16.4"
   }
 }

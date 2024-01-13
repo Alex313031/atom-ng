@@ -1527,6 +1527,11 @@ or use Pane::saveItemAs for programmatic saving.`);
     return this.configDirPath;
   }
 
+  getConfigPackagesPath() {
+    if (!this.configPackagesPath) this.configPackagesPath = fs.resolve(this.getConfigDirPath(), 'packages');
+    return this.configPackagesPath;
+  }
+
   getUserInitScriptPath() {
     const initScriptPath = fs.resolve(this.getConfigDirPath(), 'init', [
       'js',

@@ -164,7 +164,7 @@ module.exports = class ApplicationMenu {
   getDefaultTemplate() {
     return [
       {
-        label: 'Atom',
+        label: 'Atom-ng',
         id: 'Atom',
         submenu: [
           {

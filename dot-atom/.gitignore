@@ -6,3 +6,4 @@ storage
 .node-gyp
 .npm
 .atom-socket-secret-*
+dist

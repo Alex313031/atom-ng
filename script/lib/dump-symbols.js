@@ -13,7 +13,7 @@ module.exports = function() {
     );
     return Promise.resolve();
   } else {
-    console.log(`Dumping symbols in ${CONFIG.symbolsPath}`);
+    console.log(`Dumping symbols in ${CONFIG.symbolsPath}...`);
     const binaryPaths = glob.sync(
       path.join(CONFIG.intermediateAppPath, 'node_modules', '**', '*.node')
     );
@@ -36,7 +36,7 @@ function dumpSymbol(binaryPath) {
           content
         );
         if (moduleLine.length !== 3) {
-          const errorMessage = `Invalid output when dumping symbol for ${binaryPath}`;
+          const errorMessage = `Invalid output when dumping symbol for ${binaryPath}!`;
           console.error(errorMessage);
           throw new Error(errorMessage);
         } else {

@@ -1,0 +1,5 @@
+update electron to 13.6.9
+
+make atom-ng browser have its own overlay on the right
+
+Add v8 version to the about page

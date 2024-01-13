@@ -11,3 +11,4 @@ killRunningAtomInstances()
 cleanDependencies()
 cleanCaches()
 cleanOutputDirectory()
+console.log(`Done.`);

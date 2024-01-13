@@ -7,14 +7,21 @@ const { path7za } = require('7zip-bin');
 
 const CONFIG = require('../config');
 
+require('colors');
+
 module.exports = function(packagedAppPath) {
   const appArchivePath = path.join(CONFIG.buildOutputPath, getArchiveName());
+  console.log(`Copying portable user data dir into "${packagedAppPath}"`);
+  fs.copySync(
+    path.join(CONFIG.repositoryRootPath, 'portable', 'user_data_dir'),
+    path.join(packagedAppPath)
+  );
   compress(packagedAppPath, appArchivePath);
 
   if (process.platform === 'darwin') {
     const symbolsArchivePath = path.join(
       CONFIG.buildOutputPath,
-      'atom-mac-symbols.zip'
+      'Atom-ng_${CONFIG.appMetadata.version}_mac_symbols.zip'
     );
     compress(CONFIG.symbolsPath, symbolsArchivePath);
   }
@@ -23,11 +30,11 @@ module.exports = function(packagedAppPath) {
 function getArchiveName() {
   switch (process.platform) {
     case 'darwin':
-      return 'atom-mac.zip';
+      return 'Atom-ng_${CONFIG.appMetadata.version}_mac.zip';
     case 'win32':
-      return `atom-${process.arch === 'x64' ? 'x64-' : ''}windows.zip`;
+      return `Atom-ng_${CONFIG.appMetadata.version}_win_${process.arch === 'x64' ? 'x64' : ''}.zip`;
     default:
-      return `atom-${getLinuxArchiveArch()}.tar.gz`;
+      return `Atom-ng_${CONFIG.appMetadata.version}_${getLinuxArchiveArch()}.tar.gz`;
   }
 }
 
@@ -44,11 +51,11 @@ function getLinuxArchiveArch() {
 
 function compress(inputDirPath, outputArchivePath) {
   if (fs.existsSync(outputArchivePath)) {
-    console.log(`Deleting "${outputArchivePath}"`);
+    console.log(`Note: Deleting "${outputArchivePath}"`);
     fs.removeSync(outputArchivePath);
   }
 
-  console.log(`Compressing "${inputDirPath}" to "${outputArchivePath}"`);
+  console.log(`Compressing "${inputDirPath}" to ` + `"${outputArchivePath}"`.green);
   let compressCommand, compressArguments;
   if (process.platform === 'darwin') {
     compressCommand = 'zip';

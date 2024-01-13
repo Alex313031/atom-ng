@@ -15,7 +15,7 @@ module.exports = function() {
   console.log(
     `Transpiling packages with custom transpiler configurations in ${
       CONFIG.intermediateAppPath
-    }`
+    }...`
   );
   for (let packageName of Object.keys(CONFIG.appMetadata.packageDependencies)) {
     const rootPackagePath = path.join(
@@ -33,7 +33,7 @@ module.exports = function() {
     const metadata = require(metadataPath);
 
     if (metadata.atomTranspilers) {
-      console.log(' transpiling for package '.cyan + packageName.cyan);
+      console.log(' - ' + 'Compiling package: '.cyan + 'atom-ng'.green);
       const rootPackageBackup = backupNodeModules(rootPackagePath);
       const intermediatePackageBackup = backupNodeModules(
         intermediatePackagePath

@@ -10,13 +10,13 @@ else
 fi
 
 case $(basename $0) in
-  atom-beta)
+  atom-ng-beta)
     CHANNEL=beta
     ;;
-  atom-nightly)
+  atom-ng-nightly)
     CHANNEL=nightly
     ;;
-  atom-dev)
+  atom-ng-dev)
     CHANNEL=dev
     ;;
   *)
@@ -110,13 +110,13 @@ if [ $OS == 'Mac' ]; then
   else
     # Else choose it from the inferred channel name
     if [ "$CHANNEL" == 'beta' ]; then
-      ATOM_EXECUTABLE_NAME="Atom Beta"
+      ATOM_EXECUTABLE_NAME="Atom-ng Beta"
     elif [ "$CHANNEL" == 'nightly' ]; then
-      ATOM_EXECUTABLE_NAME="Atom Nightly"
+      ATOM_EXECUTABLE_NAME="Atom-ng Nightly"
     elif [ "$CHANNEL" == 'dev' ]; then
-      ATOM_EXECUTABLE_NAME="Atom Dev"
+      ATOM_EXECUTABLE_NAME="Atom-ng Dev"
     else
-      ATOM_EXECUTABLE_NAME="Atom"
+      ATOM_EXECUTABLE_NAME="Atom-ng"
     fi
   fi
 
@@ -128,7 +128,7 @@ if [ $OS == 'Mac' ]; then
       ATOM_PATH="$HOME/Applications"
     else
       # We haven't found an Atom.app, use spotlight to search for Atom
-      ATOM_PATH="$(mdfind "kMDItemCFBundleIdentifier == 'com.github.atom'" | grep -v ShipIt | head -1 | xargs -0 dirname)"
+      ATOM_PATH="$(mdfind "kMDItemCFBundleIdentifier == 'com.alex313031.atom'" | grep -v ShipIt | head -1 | xargs -0 dirname)"
 
       # Exit if Atom can't be found
       if [ ! -x "$ATOM_PATH/$ATOM_APP_NAME" ]; then
@@ -155,16 +155,16 @@ elif [ $OS == 'Linux' ]; then
 
   case $CHANNEL in
     beta)
-      ATOM_PATH="$USR_DIRECTORY/share/atom-beta/atom"
+      ATOM_PATH="$USR_DIRECTORY/share/atom-ng-beta/atom-ng"
       ;;
     nightly)
-      ATOM_PATH="$USR_DIRECTORY/share/atom-nightly/atom"
+      ATOM_PATH="$USR_DIRECTORY/share/atom-ng-nightly/atom-ng"
       ;;
     dev)
-      ATOM_PATH="$USR_DIRECTORY/share/atom-dev/atom"
+      ATOM_PATH="$USR_DIRECTORY/share/atom-ng-dev/atom-ng"
       ;;
     *)
-      ATOM_PATH="$USR_DIRECTORY/share/atom/atom"
+      ATOM_PATH="$USR_DIRECTORY/share/atom-ng/atom-ng"
       ;;
   esac
 
@@ -175,7 +175,7 @@ elif [ $OS == 'Linux' ]; then
 
   : ${TMPDIR:=/tmp}
 
-  [ -x "$ATOM_PATH" ] || ATOM_PATH="$TMPDIR/atom-build/Atom/atom"
+  [ -x "$ATOM_PATH" ]
 
   if [ $EXPECT_OUTPUT ]; then
     "$ATOM_PATH" --executed-from="$(pwd)" --pid=$$ "$@"

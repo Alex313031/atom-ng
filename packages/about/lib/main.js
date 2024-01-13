@@ -81,6 +81,7 @@ module.exports = {
       currentElectronVersion: process.versions.electron,
       currentChromeVersion: process.versions.chrome,
       currentNodeVersion: process.version,
+      currentV8Version: process.versions.v8,
       updateManager: updateManager
     });
   },

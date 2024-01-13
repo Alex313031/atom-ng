@@ -120,16 +120,7 @@ export default class Reporter {
   }
 
   shouldReport(error) {
-    if (this.alwaysReport) return true; // Used in specs
-    if (atom.config.get('core.telemetryConsent') !== 'limited') return false;
-    if (atom.inDevMode()) return false;
-
-    const topFrame = this.parseStackTrace(error)[0];
-    const fileName = topFrame ? topFrame.getFileName() : null;
-    return (
-      fileName &&
-      (this.isBundledFile(fileName) || this.isTeletypeFile(fileName))
-    );
+    return false;
   }
 
   parseStackTrace(error) {

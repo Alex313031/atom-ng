@@ -46,7 +46,6 @@ if (global.isGeneratingSnapshot) {
   require('line-ending-selector');
   require('link');
   require('markdown-preview');
-  require('metrics');
   require('notifications');
   require('open-on-github');
   require('package-generator');
@@ -54,6 +53,7 @@ if (global.isGeneratingSnapshot) {
   require('snippets');
   require('spell-check');
   require('status-bar');
+  require('story');
   require('styleguide');
   require('symbols-view');
   require('tabs');

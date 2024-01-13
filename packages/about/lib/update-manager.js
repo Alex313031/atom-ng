@@ -125,7 +125,7 @@ let UpdateManager = class UpdateManager {
   getReleaseNotesURLForVersion(appVersion) {
     // Dev versions will not have a releases page
     if (appVersion.indexOf('dev') > -1) {
-      return 'https://atom.io/releases';
+      return 'https://github.com/Alex313031/atom-ng/releases';
     }
 
     if (!appVersion.startsWith('v')) {
@@ -133,8 +133,8 @@ let UpdateManager = class UpdateManager {
     }
 
     const releaseRepo =
-      appVersion.indexOf('nightly') > -1 ? 'atom-nightly-releases' : 'atom';
-    return `https://github.com/atom/${releaseRepo}/releases/tag/${appVersion}`;
+      appVersion.indexOf('nightly') > -1 ? 'atom-ng-nightly-releases' : 'atom-ng';
+    return `https://github.com/Alex313031/${releaseRepo}/releases/tag/${appVersion}`;
   }
 };
 

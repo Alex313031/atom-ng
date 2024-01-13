@@ -1,0 +1,62 @@
+.linter-status-count {
+    .highlight, .highlight-error,
+    .highlight-warning, .highlight-info {
+        border-radius: 0;
+        background: fade(@text-color, 10%);
+
+        &:first-child {
+            border-radius: .125em 0 0 .125em;
+        }
+
+        &:last-child {
+            border-radius: 0 .125em .125em 0;
+        }
+    }
+
+    .highlight-error {
+        background-color: fade(@text-color-error, 80%);
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .highlight-info {
+        background-color: fade(@text-color-info, 80%);
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .highlight-warning {
+        background-color: fade(@text-color-warning, 80%);
+        color: darken(@text-color-warning, 35%);
+    }
+}
+
+.sb-table, .nuclide-ui-table {
+    thead th {
+        background-color: darken(@app-background-color, 1.5%);
+
+        &:nth-of-type(even) {
+            background-color: darken(@app-background-color, 2.5%);
+        }
+    }
+
+    tbody {
+        tr {
+            &:nth-of-type(even), &:nth-of-type(even):hover {
+                background-color: lighten(@app-background-color, 1%);
+            }
+
+            &:hover {
+                background-color: inherit;
+            }
+        }
+
+        td:nth-of-type(even) {
+            background-color: fade(darken(@app-background-color, 2%), 50%);
+        }
+    }
+}
+
+.linter-gutter {
+    &.icon::before {
+        margin: 0;
+    }
+}

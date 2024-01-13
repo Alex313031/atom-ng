@@ -1,0 +1,28 @@
+{
+   "context-menu": {
+      ".tree-view .full-menu": [{
+            "type": "separator"
+         },
+         {
+            "label": "Atom-ng Browser: Preview",
+            "command": "atom-browser:preview"
+         }
+      ]
+   },
+   "menu": [{
+      "label": "Packages",
+      "submenu": [{
+         "label": "Atom-ng Browser",
+         "submenu": [
+            {
+               "label": "Toggle",
+               "command": "atom-browser:showHide"
+            },
+            {
+               "label": "Preview",
+               "command": "atom-browser:preview"
+            }
+         ]
+      }]
+   }]
+}

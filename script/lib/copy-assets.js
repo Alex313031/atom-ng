@@ -1,7 +1,7 @@
+'use strict';
+
 // This module exports a function that copies all the static assets into the
 // appropriate location in the build output directory.
-
-'use strict';
 
 const path = require('path');
 const fs = require('fs-extra');
@@ -9,8 +9,19 @@ const CONFIG = require('../config');
 const glob = require('glob');
 const includePathInPackagedApp = require('./include-path-in-packaged-app');
 
+const fingerPath = path.join(
+  CONFIG.repositoryRootPath,
+  'node_modules',
+  '.dependencies-fingerprint'
+);
+const fingerTxt = path.join(CONFIG.buildOutputPath, 'fingerprint.txt');
+
 module.exports = function() {
-  console.log(`Copying assets to ${CONFIG.intermediateAppPath}`);
+
+  console.log(`Copying .dependencies-fingerprint to ${fingerTxt}...`);
+  fs.copySync(fingerPath, fingerTxt);
+
+  console.log(`Copying assets to ${CONFIG.intermediateAppPath}...`);
   let srcPaths = [
     path.join(CONFIG.repositoryRootPath, 'benchmarks', 'benchmark-runner.js'),
     path.join(CONFIG.repositoryRootPath, 'dot-atom'),
@@ -60,9 +71,20 @@ module.exports = function() {
       'app-icons',
       CONFIG.channel,
       'png',
-      '1024.png'
+      '64.png'
     ),
-    path.join(CONFIG.intermediateAppPath, 'resources', 'atom.png')
+    path.join(CONFIG.intermediateAppPath, 'resources', 'atom-ng.png')
+  );
+  fs.copySync(
+    path.join(
+      CONFIG.repositoryRootPath,
+      'resources',
+      'app-icons',
+      CONFIG.channel,
+      'png',
+      '256.png'
+    ),
+    path.join(CONFIG.intermediateAppPath, 'resources', 'atom-ng-pixmap.png')
   );
 };
 

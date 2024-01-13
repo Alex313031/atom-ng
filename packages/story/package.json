@@ -1,0 +1,39 @@
+{
+  "name": "story",
+  "version": "0.1.0",
+  "description": "Show Atom's History.",
+  "main": "./lib/main",
+  "atomTestRunner": "atom-mocha-test-runner",
+  "repository": "https://github.com/Alex313031/atom-ng",
+  "license": "MIT",
+  "engines": {
+    "atom": ">1.50.0"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "atom --test test/*.test.js"
+  },
+  "consumedServices": {},
+  "configSchema": {
+    "showOnStartup": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show Atom's History when opening a new Atom-ng window."
+    }
+  },
+  "deserializers": {
+    "StoryView": "createStoryView"
+  },
+  "dependencies": {
+    "etch": "0.9.5"
+  },
+  "devDependencies": {
+    "atom-mocha-test-runner": "^1.0.0",
+    "standard": "^8.6.0"
+  },
+  "standard": {
+    "globals": [
+      "atom"
+    ]
+  }
+}

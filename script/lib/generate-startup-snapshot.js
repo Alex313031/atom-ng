@@ -5,6 +5,8 @@ const electronLink = require('electron-link');
 const terser = require('terser');
 const CONFIG = require('../config');
 
+require('colors');
+
 module.exports = function(packagedAppPath) {
   const snapshotScriptPath = path.join(CONFIG.buildOutputPath, 'startup.js');
   const coreModules = new Set([
@@ -33,7 +35,7 @@ module.exports = function(packagedAppPath) {
         process.stdout.write('\r');
       }
       process.stdout.write(
-        `Generating snapshot script at "${snapshotScriptPath}" (${++processedFiles})`
+        `Generating snapshot script at "${snapshotScriptPath}" ` + `(${++processedFiles}) `.bold
       );
 
       const requiringModuleRelativePath = path.relative(
@@ -261,9 +263,7 @@ module.exports = function(packagedAppPath) {
       );
     }
   }).then(({ snapshotScript }) => {
-    process.stdout.write('\n');
-
-    process.stdout.write('Minifying startup script');
+    process.stdout.write('Minifying startup script...');
     const minification = terser.minify(snapshotScript, {
       keep_fnames: true,
       keep_classnames: true,
@@ -273,7 +273,7 @@ module.exports = function(packagedAppPath) {
     process.stdout.write('\n');
     fs.writeFileSync(snapshotScriptPath, minification.code);
 
-    console.log('Verifying if snapshot can be executed via `mksnapshot`');
+    console.log(' > Verifying that snapshot can be executed via `mksnapshot`');
     const verifySnapshotScriptPath = path.join(
       CONFIG.repositoryRootPath,
       'script',
@@ -299,7 +299,7 @@ module.exports = function(packagedAppPath) {
       { env: Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: 1 }) }
     );
 
-    console.log('Generating startup blob with mksnapshot');
+    console.log('Generating startup blob with mksnapshot...');
     childProcess.spawnSync(process.execPath, [
       path.join(
         CONFIG.repositoryRootPath,
@@ -336,7 +336,7 @@ module.exports = function(packagedAppPath) {
           'v8_context_snapshot.x86_64.bin'
         );
       }
-      console.log(`Moving generated startup blob into "${destinationPath}"`);
+      console.log(`Moving generated startup blob into "${destinationPath}"...`);
       try {
         fs.unlinkSync(destinationPath);
       } catch (err) {
@@ -351,4 +351,5 @@ module.exports = function(packagedAppPath) {
       );
     }
   });
+  console.log(`Done.`);
 };

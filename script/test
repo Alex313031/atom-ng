@@ -48,7 +48,7 @@ const runApmInstall = require('./lib/run-apm-install');
 function assertExecutablePaths(executablePaths) {
   assert(
     executablePaths.length !== 0,
-    `No atom build found. Please run "script/build" and try again.`
+    `No atom-ng build found. Please run "script/build" and try again.`
   );
   assert(
     executablePaths.length === 1,
@@ -71,7 +71,7 @@ if (process.platform === 'darwin') {
   );
 } else if (process.platform === 'linux') {
   const executablePaths = glob.sync(
-    path.join(CONFIG.buildOutputPath, 'atom-*', 'atom')
+    path.join(CONFIG.buildOutputPath, 'atom-ng-*', 'atom-ng')
   );
   assertExecutablePaths(executablePaths);
   executablePath = executablePaths[0];

@@ -1,8 +1,8 @@
 'menu': [
   {
-    label: 'Atom'
+    label: 'Atom-ng'
     submenu: [
-      { label: 'About Atom', command: 'application:about' }
+      { label: 'About Atom-ng', command: 'application:about' }
       { label: 'View License', command: 'application:open-license' }
       { label: 'VERSION', enabled: false }
       { label: 'Restart and Install Update', command: 'application:install-update', visible: false}
@@ -22,11 +22,11 @@
       { type: 'separator' }
       { label: 'Services', role: 'services', submenu: [] }
       { type: 'separator' }
-      { label: 'Hide Atom', command: 'application:hide' }
+      { label: 'Hide Atom-ng', command: 'application:hide' }
       { label: 'Hide Others', command: 'application:hide-other-applications' }
       { label: 'Show All', command: 'application:unhide-all-applications' }
       { type: 'separator' }
-      { label: 'Quit Atom', command: 'application:quit' }
+      { label: 'Quit Atom-ng', command: 'application:quit' }
     ]
   }
   {
@@ -225,6 +225,7 @@
       { label: 'Report Issue', command: 'application:report-issue' }
       { label: 'Search Issues', command: 'application:search-issues' }
       { type: 'separator' }
+      {'label': 'Welcome Guide', 'command': 'welcome:show'}
     ]
   }
 ]

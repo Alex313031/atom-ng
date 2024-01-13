@@ -13,7 +13,7 @@ let appName = CONFIG.appMetadata.name;
 if (process.platform === 'win32') {
   // Use the channel name in the app name on Windows so that the installer will
   // place it in a different folder in AppData\Local
-  appName = CONFIG.channel === 'stable' ? 'atom' : `atom-${CONFIG.channel}`;
+  appName = CONFIG.channel === 'stable' ? 'atom-ng' : `atom-ng-${CONFIG.channel}`;
 }
 
 module.exports = function() {
@@ -21,7 +21,7 @@ module.exports = function() {
     `Generating metadata for ${path.join(
       CONFIG.intermediateAppPath,
       'package.json'
-    )}`
+    )}...`
   );
   CONFIG.appMetadata._atomPackages = buildBundledPackagesMetadata();
   CONFIG.appMetadata._atomMenu = buildPlatformMenuMetadata();
@@ -42,7 +42,7 @@ module.exports = function() {
     `Generating metadata for ${path.join(
       CONFIG.intermediateAppPath,
       'package.json'
-    )}`
+    )}...`
   );
   CONFIG.appMetadata._atomPackages = buildBundledPackagesMetadata();
   CONFIG.appMetadata._atomMenu = buildPlatformMenuMetadata();
@@ -73,7 +73,7 @@ function buildBundledPackagesMetadata() {
       msg => {
         if (!msg.match(/No README data$/)) {
           console.warn(
-            `Invalid package metadata. ${packageMetadata.name}: ${msg}`
+            `Invalid package metadata! | ${packageMetadata.name}: ${msg}`.yellow
           );
         }
       },

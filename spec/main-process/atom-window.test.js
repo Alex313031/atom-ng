@@ -58,7 +58,6 @@ describe('AtomWindow', function() {
           '*':
             core:
               automaticallyUpdate: false
-              telemetryConsent: "no"
             welcome:
               showOnStartup: false
         `;
@@ -97,7 +96,7 @@ describe('AtomWindow', function() {
       const { browserWindow } = w;
 
       assert.isFalse(browserWindow.isVisible());
-      assert.isTrue(browserWindow.getTitle().startsWith('Atom'));
+      assert.isTrue(browserWindow.getTitle().startsWith('Atom-ng'));
 
       const settings = JSON.parse(browserWindow.loadSettingsJSON);
       assert.strictEqual(settings.userSettings, 'stub-config');

@@ -1,0 +1,196 @@
+@import "ui-variables";
+
+atom-notifications:empty {
+  pointer-events: none;
+}
+
+atom-text-editor[with-minimap] {
+  display: flex;
+
+  > div {
+    order: 2;
+    flex: 1 0 90%;
+    width: 90%;
+  }
+}
+
+// css containment to improve performance
+// this means the css properties of the minimap does not affect other parts of Atom
+// https://drafts.csswg.org/css-contain/#propdef-contain
+@contain_all: size layout paint style;
+@contain_except_size: layout paint style;
+
+atom-text-editor,
+html {
+  atom-text-editor-minimap {
+    contain: @contain_all;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+    cursor: default;
+
+    &:not([stand-alone]) {
+      height: 100%;
+      order: 3;
+      width: 10%;
+      flex: 0 0 10%;
+
+      &.left {
+        order: 1;
+      }
+    }
+
+    // ignore absolute mode the minimap is on the left, because
+    // it would conflict with the editor's gutter
+    &.absolute:not(.left) {
+      position: absolute;
+      right: 0;
+
+      &.adjust-absolute-height {
+        pointer-events: none;
+
+        canvas,
+        .minimap-visible-area {
+          contain: @contain_except_size;
+          pointer-events: auto;
+        }
+      }
+
+      .open-minimap-quick-settings {
+        contain: @contain_all;
+        right: 16px;
+      }
+    }
+
+    canvas {
+      contain: @contain_except_size;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+    }
+
+    .minimap-visible-area {
+      contain: @contain_all;
+      position: absolute;
+      display: block;
+      cursor: -webkit-grab;
+
+      border-left: 0px solid rgba(127, 127, 127, 0.1);
+
+      &:active {
+        cursor: -webkit-grabbing;
+      }
+
+      &::after {
+        contain: @contain_all;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(127, 127, 127, 0.2);
+      }
+    }
+
+    .minimap-controls {
+      contain: @contain_all;
+      position: relative;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .minimap-scroll-indicator {
+      contain: @contain_all;
+      position: absolute;
+      display: block;
+      right: 0;
+      width: 1.5px;
+      min-height: 2px;
+      z-index: 10;
+      background: #fff - @background-color-selected; // invert color
+    }
+
+    .open-minimap-quick-settings {
+      contain: @contain_all;
+      opacity: 0;
+      position: absolute;
+      z-index: 1;
+      cursor: pointer;
+      pointer-events: auto;
+      color: @text-color;
+      font-size: 20px;
+      text-align: center;
+      line-height: 24px;
+      width: 24px;
+      height: 24px;
+      display: block;
+      right: 8px;
+      transition: opacity 0.4s;
+
+      &:before {
+        contain: @contain_all;
+        content: "\f02f";
+        font-family: "Octicons Regular";
+      }
+    }
+    &:hover .open-minimap-quick-settings {
+      contain: @contain_all;
+      opacity: 1;
+      transition: opacity 0.1s;
+    }
+  }
+}
+
+minimap-quick-settings {
+  contain: @contain_except_size;
+  position: absolute !important;
+  z-index: 5;
+
+  .hidden-input {
+    contain: @contain_all;
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
+  }
+
+  ol {
+    contain: @contain_all;
+    margin-top: 0 !important;
+
+    .separator {
+      contain: @contain_all;
+      background: @background-color-highlight;
+      height: 1px;
+
+      &:first-child {
+        display: none;
+      }
+    }
+
+    li:hover {
+      contain: @contain_except_size;
+      background: @background-color-highlight;
+    }
+  }
+
+  .select-list.popover-list ol.list-group {
+    contain: @contain_except_size;
+    overflow: visible;
+    max-height: none;
+  }
+
+  .btn-group {
+    contain: @contain_except_size;
+    width: 100%;
+
+    .btn {
+      contain: @contain_except_size;
+      width: 50%;
+    }
+  }
+}

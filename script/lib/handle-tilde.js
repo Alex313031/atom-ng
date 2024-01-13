@@ -19,7 +19,7 @@ module.exports = function(aPath) {
           const passwd = passwdUser.sync(user);
           if (passwd === undefined) {
             throw new Error(
-              `Failed to expand the tilde in ${aPath} - user "${user}" does not exist`
+              `Failed to expand the tilde in ${aPath} : user "${user}" does not exist!`
             );
           }
           return passwd.homedir;

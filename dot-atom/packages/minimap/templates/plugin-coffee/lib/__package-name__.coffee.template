@@ -1,0 +1,33 @@
+{CompositeDisposable} = require 'atom'
+
+module.exports =
+  active: false
+
+  isActive: -> @active
+
+  activate: (state) ->
+    @subscriptions = new CompositeDisposable
+
+  consumeMinimapServiceV1: (@minimap) ->
+    @minimap.registerPlugin '__package-name__', this
+
+  deactivate: ->
+    @minimap.unregisterPlugin '__package-name__'
+    @minimap = null
+
+  activatePlugin: ->
+    return if @active
+
+    @active = true
+
+    @minimapsSubscription = @minimap.observeMinimaps (minimap) =>
+      minimapElement = atom.views.getView(minimap)
+
+      # ...
+
+  deactivatePlugin: ->
+    return unless @active
+
+    @active = false
+    @minimapsSubscription.dispose()
+    @subscriptions.dispose()

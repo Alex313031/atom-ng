@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const childProcess = require('child_process');
+
+const CONFIG = require('./config');
+
+// Recognised by '@electron/get', used by the 'electron-mksnapshot' and 'electron-chromedriver' dependencies
+process.env.ELECTRON_CUSTOM_VERSION = CONFIG.appMetadata.electronVersion;
+
+console.log('Running preinstall...');
+
+childProcess.execFileSync(
+  CONFIG.getNpmBinPath(),
+  ['--loglevel=error', 'install', '--no-package-lock', '--no-save', 'colors@1.4.0'],
+  { env: process.env, cwd: CONFIG.scriptRootPath }
+);

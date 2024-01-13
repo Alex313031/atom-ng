@@ -1423,7 +1423,7 @@ module.exports = class Workspace extends Model {
         this.applicationDelegate.confirm(
           {
             message:
-              'Atom will be unresponsive during the loading of very large files.',
+              'Atom-ng will be unresponsive during the loading of very large files.',
             detail: 'Do you still want to load this file?',
             buttons: ['Proceed', 'Cancel']
           },

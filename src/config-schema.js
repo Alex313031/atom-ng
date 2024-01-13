@@ -80,7 +80,7 @@ const configSchema = {
         type: 'string',
         default: 'prompt',
         description:
-          'When should Atom register itself as the default handler for atom:// URIs',
+          'When should Atom register itself as the default handler for atom:// URIs?',
         enum: [
           {
             value: 'prompt',
@@ -338,29 +338,6 @@ const configSchema = {
           'Allow items to be previewed without adding them to a pane permanently, such as when single clicking files in the tree view.',
         type: 'boolean',
         default: true
-      },
-      telemetryConsent: {
-        description:
-          'Allow usage statistics and exception reports to be sent to the Atom team to help improve the product.',
-        title: 'Send Telemetry to the Atom Team',
-        type: 'string',
-        default: 'undecided',
-        enum: [
-          {
-            value: 'limited',
-            description:
-              'Allow limited anonymous usage stats, exception and crash reporting'
-          },
-          {
-            value: 'no',
-            description: 'Do not send any telemetry data'
-          },
-          {
-            value: 'undecided',
-            description:
-              'Undecided (Atom will ask again next time it is launched)'
-          }
-        ]
       },
       warnOnLargeFileLimit: {
         description:

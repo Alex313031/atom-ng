@@ -18,7 +18,7 @@ module.exports = async function(packagedAppPath) {
     !process.env.ATOM_MAC_CODE_SIGNING_CERT_PATH
   ) {
     console.log(
-      'Skipping code signing because the ATOM_MAC_CODE_SIGNING_CERT_DOWNLOAD_URL environment variable is not defined'
+      'NOTE: Skipping code signing because the ATOM_MAC_CODE_SIGNING_CERT_DOWNLOAD_URL environment variable is not defined'
         .gray
     );
     return;
@@ -44,7 +44,7 @@ module.exports = async function(packagedAppPath) {
       );
     } catch (err) {
       console.log(
-        `Creating keychain ${process.env.ATOM_MAC_CODE_SIGNING_KEYCHAIN}`
+        `Creating keychain: ${process.env.ATOM_MAC_CODE_SIGNING_KEYCHAIN}`
       );
       // The keychain doesn't exist, try to create it
       spawnSync(
@@ -97,7 +97,7 @@ module.exports = async function(packagedAppPath) {
     console.log(
       `Importing certificate at ${certPath} into ${
         process.env.ATOM_MAC_CODE_SIGNING_KEYCHAIN
-      } keychain`
+      } keychain...`
     );
     spawnSync('security', [
       'import',
@@ -124,10 +124,10 @@ module.exports = async function(packagedAppPath) {
         process.env.ATOM_MAC_CODE_SIGNING_KEYCHAIN
       ]);
     } catch (e) {
-      console.log("Incantation failed... maybe this isn't Sierra?");
+      console.log("Incantation failed! ... maybe this isn't Sierra?");
     }
 
-    console.log(`Code-signing application at ${packagedAppPath}`);
+    console.log(`Code-signing application at ${packagedAppPath}...`);
 
     try {
       await osxSign.signAsync({
@@ -139,14 +139,14 @@ module.exports = async function(packagedAppPath) {
         platform: 'darwin',
         hardenedRuntime: true
       });
-      console.info('Application signing complete');
+      console.info('Application signing complete.');
     } catch (err) {
-      console.error('Applicaiton singing failed');
+      console.error('Application singing failed!');
       console.error(err);
     }
   } finally {
     if (!process.env.ATOM_MAC_CODE_SIGNING_CERT_PATH) {
-      console.log(`Deleting certificate at ${certPath}`);
+      console.log(`Deleting certificate at ${certPath}...`);
       fs.removeSync(certPath);
     }
   }
