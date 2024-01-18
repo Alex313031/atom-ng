@@ -11,8 +11,8 @@ set LDFLAGS=-Wl,-O3 -mavx -maes -s
 set VERBOSE=1
 set V=1
 
-set MSVS_VERSION=2017
-set GYP_MSVS_VERSION=2017
+set MSVS_VERSION=2019
+set GYP_MSVS_VERSION=2019
 
 set ELECTRON_CACHE=%~dp0%electron\bin
 set electron_config_cache=%~dp0%electron\bin

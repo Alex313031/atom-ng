@@ -16,8 +16,8 @@ die() { yell "$*"; exit 111; }
 try() { "$@" || die "${RED}Failed $*"; }
 
 # Set msvs_version for node-gyp on Windows
-export MSVS_VERSION="2017" &&
-export GYP_MSVS_VERSION="2017" &&
+export MSVS_VERSION="2019" &&
+export GYP_MSVS_VERSION="2019" &&
 # Download electron binaries here
 export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
@@ -69,8 +69,8 @@ export V=1 &&
 # export ATOM_ELECTRON_URL='https://artifacts.electronjs.org/headers/dist' &&
 
 # Set msvs_version for node-gyp on Windows
-export MSVS_VERSION="2017" &&
-export GYP_MSVS_VERSION="2017" &&
+export MSVS_VERSION="2019" &&
+export GYP_MSVS_VERSION="2019" &&
 # Download electron binaries here
 export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
@@ -102,8 +102,8 @@ export V=1 &&
 # export ATOM_ELECTRON_URL='https://artifacts.electronjs.org/headers/dist' &&
 
 # Set msvs_version for node-gyp on Windows
-export MSVS_VERSION="2017" &&
-export GYP_MSVS_VERSION="2017" &&
+export MSVS_VERSION="2019" &&
+export GYP_MSVS_VERSION="2019" &&
 # Download electron binaries here
 export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
@@ -141,8 +141,8 @@ export V=1 &&
 # export ATOM_ELECTRON_URL='https://artifacts.electronjs.org/headers/dist' &&
 
 # Set msvs_version for node-gyp on Windows
-export MSVS_VERSION="2017" &&
-export GYP_MSVS_VERSION="2017" &&
+export MSVS_VERSION="2019" &&
+export GYP_MSVS_VERSION="2019" &&
 # Download electron binaries here
 export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
