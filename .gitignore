@@ -21,6 +21,8 @@ node_modules
 docs/output
 docs/includes
 spec/fixtures/evil-files/
+!spec/fixtures/packages/package-with-ignored-incompatible-native-module/node_modules/
+!spec/fixtures/packages/package-with-incompatible-native-module/node_modules/
 !spec/fixtures/packages/package-with-incompatible-native-module-loaded-conditionally/node_modules/
 out/
 /node_modules/
