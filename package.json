@@ -20,6 +20,7 @@
     "url": "https://github.com/Alex313031/atom-ng/issues"
   },
   "license": "MIT",
+  "copyright": "Copyright © 2024 Alex313031",
   "electronVersion": "12.2.3",
   "dependencies": {
     "@atom/fuzzy-native": "git+https://github.com/atom/fuzzy-native.git#934c5ad",
