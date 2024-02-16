@@ -3,7 +3,8 @@ const {
   app,
   dialog,
   ipcMain,
-  nativeImage
+  nativeImage,
+  nativeTheme
 } = require('electron');
 const getAppName = require('../get-app-name');
 const path = require('path');
@@ -44,6 +45,7 @@ module.exports = class AtomWindow extends EventEmitter {
       show: false,
       title: getAppName(),
       tabbingIdentifier: 'atom',
+      darkTheme: true,
       webPreferences: {
         // Prevent specs from throttling when the window is in the background:
         // this should result in faster CI builds, and an improvement in the
@@ -88,6 +90,8 @@ module.exports = class AtomWindow extends EventEmitter {
     this.browserWindow = new BrowserWindowConstructor(options);
     // this.browserWindow.show()
     // this.browserWindow.openDevTools()
+
+    nativeTheme.themeSource = 'dark';
 
     Object.defineProperty(this.browserWindow, 'loadSettingsJSON', {
       get: () =>

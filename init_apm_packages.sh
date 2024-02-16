@@ -164,7 +164,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -v ~/.gitconfig &&
+#rm -v ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
