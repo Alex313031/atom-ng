@@ -32,6 +32,7 @@ sleep 1 &&
 
 printf "\n" &&
 printf "${bold}${YEL} Cleaning artifacts and build directory...${c0}\n" &&
-npm run clean
+npm run clean &&
+rm -rfv ./docs/output
 
 exit 0
