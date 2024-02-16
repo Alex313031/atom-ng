@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright(c) 2023 Alex313031
+# Copyright(c) 2024 Alex313031
 
 YEL='\033[1;33m' # Yellow
 CYA='\033[1;96m' # Cyan
@@ -32,7 +32,6 @@ sleep 1 &&
 
 printf "\n" &&
 printf "${bold}${YEL} Cleaning artifacts and build directory...${c0}\n" &&
+rm -rfv ./docs/output &&
 npm run clean &&
-rm -rfv ./docs/output
-
-exit 0
+tput sgr0

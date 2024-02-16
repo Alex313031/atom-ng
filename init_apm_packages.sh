@@ -24,6 +24,7 @@ displayHelp () {
 	printf "${bold}${GRE}Script to bootstrap \`dot-atom/packages\`${c0}\n" &&
 	printf "${bold}${YEL}Use the --linux flag for Linux.${c0}\n" &&
 	printf "${bold}${YEL}Use the --win flag for Windows (in bash)${c0}\n" &&
+	printf "${bold}${YEL}Use the --mac flag for MacOS (in bash)${c0}\n" &&
 	printf "${bold}${YEL}Use the --help flag to show this help${c0}\n" &&
 	printf "\n"
 }
@@ -124,9 +125,57 @@ case $1 in
 	--win) initWin; exit 0;;
 esac
 
+initMac () {
+# Optimization parameters
+export CFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CXXFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CPPFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export LDFLAGS="-Wl,-O3 -mavx -maes -s" &&
+export VERBOSE=1 &&
+export V=1 &&
+
+# Download electron binaries here
+export ELECTRON_CACHE="${PWD}/electron/bin" &&
+export electron_config_cache="${PWD}/electron/bin" &&
+
+printf "\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\`...${c0}\n" &&
+printf "\n" &&
+
+# Workaround for git:// URLs
+if [ -e ~/.gitconfig ]
+  then
+  cp -i -v ~/.gitconfig ~/.gitconfig_bak
+fi
+cp -v ./gitconfig ~/.gitconfig &&
+printf "\n" &&
+
+cd ./packages/atom-material-ui &&
+npm run build && cd ..&&
+cd atom-material-syntax-dark &&
+npm run build && cd .. && cd .. &&
+
+cd ./dot-atom/packages &&
+cd atom-ng-browser &&
+npm run build && cd .. &&
+cd color-picker &&
+npm run build && cd .. &&
+cd minimap && npm run build &&
+cd .. && cd .. && cd .. &&
+
+printf "\n" &&
+rm -v ~/.gitconfig &&
+printf "\n"
+}
+case $1 in
+	--mac) initMac; exit 0;;
+esac
+
 printf "\n" &&
 printf "${bold}${GRE}Script to bootstrap \`dot-atom/packages\`${c0}\n" &&
 printf "${bold}${YEL}Use the --linux flag for Linux.${c0}\n" &&
 printf "${bold}${YEL}Use the --win flag for Windows (in bash)${c0}\n" &&
+printf "${bold}${YEL}Use the --mac flag for MacOS (in bash)${c0}\n" &&
 printf "${bold}${YEL}Use the --help flag to show this help${c0}\n" &&
-printf "\n"
+printf "\n" &&
+tput sgr0

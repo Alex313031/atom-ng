@@ -3,7 +3,7 @@
   "author": "Alex313031 <https://github.com/Alex313031>",
   "appName": "atom-ng",
   "productName": "Atom-ng",
-  "version": "1.66.11",
+  "version": "1.66.12",
   "description": "A hyper-hackable text editor for the 21st Century.",
   "main": "./src/main-process/main.js",
   "branding": {
