@@ -193,7 +193,7 @@ mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
 # Build installation packages
-./script/build --compress-artifacts
+./script/build --create-debian-package --compress-artifacts
 }
 case $1 in
 	--sse4) packageAtomSSE4; exit 0;;
