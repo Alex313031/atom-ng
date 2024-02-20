@@ -47,10 +47,10 @@ esac
 
 bootstrapAtom () {
 # Optimization parameters
-export CFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CXXFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CPPFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export LDFLAGS="-Wl,-O3 -mavx -maes -s" &&
+export CFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CXXFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CPPFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export LDFLAGS="-Wl,-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -s" &&
 export VERBOSE=1 &&
 export V=1 &&
 
@@ -77,10 +77,10 @@ esac
 
 buildAtom () {
 # Optimization parameters
-export CFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CXXFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CPPFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export LDFLAGS="-Wl,-O3 -mavx -maes -s" &&
+export CFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CXXFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CPPFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export LDFLAGS="-Wl,-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -s" &&
 export VERBOSE=1 &&
 export V=1 &&
 
@@ -110,10 +110,10 @@ esac
 
 packageAtom () {
 # Optimization parameters
-export CFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CXXFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export CPPFLAGS="-DNDEBUG -mavx -maes -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
-export LDFLAGS="-Wl,-O3 -mavx -maes -s" &&
+export CFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CXXFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CPPFLAGS="-DNDEBUG -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -O3 -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export LDFLAGS="-Wl,-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mavx2 -mfma -s" &&
 export VERBOSE=1 &&
 export V=1 &&
 
