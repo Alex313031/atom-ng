@@ -118,8 +118,6 @@ printf "\n" &&
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
-export NODE_ENV=production &&
-
 # Build atom-ng
 ./script/build
 }
@@ -153,8 +151,6 @@ printf "\n" &&
 # Workaround for jasmine
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
-
-export NODE_ENV=production &&
 
 # Build installation packages
 ./script/build --create-debian-package --compress-artifacts

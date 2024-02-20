@@ -99,8 +99,6 @@ printf "\n" &&
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
-export NODE_ENV=production &&
-
 # Build for MacOS
 ./script/build
 }
@@ -131,8 +129,6 @@ printf "\n" &&
 # Workaround for jasmine
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
-
-export NODE_ENV=production &&
 
 # Build installation packages
 ./script/build --compress-artifacts
