@@ -166,20 +166,6 @@ module.exports = class AboutView extends EtchComponent {
               { className: 'about-more-info' },
               $.span(
                 {
-                  className: 'about-version-container inline-block v8',
-                  onclick: this.handleV8VersionClick.bind(this)
-                },
-                $.span(
-                  { className: 'about-more-version' },
-                  `V8: ${this.props.currentV8Version} `
-                ),
-                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy V8 Version' })
-              )
-            ),
-            $.div(
-              { className: 'about-more-info' },
-              $.span(
-                {
                   className: 'about-version-container inline-block node',
                   onclick: this.handleNodeVersionClick.bind(this)
                 },
@@ -188,6 +174,20 @@ module.exports = class AboutView extends EtchComponent {
                   `Node: ${this.props.currentNodeVersion} `
                 ),
                 $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy NodeJS Version' })
+              )
+            ),
+            $.div(
+              { className: 'about-more-info' },
+              $.span(
+                {
+                  className: 'about-version-container inline-block v8',
+                  onclick: this.handleV8VersionClick.bind(this)
+                },
+                $.span(
+                  { className: 'about-more-version' },
+                  `V8: ${this.props.currentV8Version} `
+                ),
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy V8 Version' })
               )
             )
           )
