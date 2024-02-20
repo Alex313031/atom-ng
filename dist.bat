@@ -4,9 +4,9 @@ title Building Atom-ng
 
 echo Building Atom-ng for Windows...
 
-set CFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
-set CXXFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
-set CPPFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set CFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set CXXFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set CPPFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
 set LDFLAGS=-Wl,-O3 -mavx -maes -s
 
 mkdir %USERPROFILE%\.atom\.node-gyp
