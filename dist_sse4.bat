@@ -15,6 +15,8 @@ copy gitconfig %USERPROFILE%\.atom\.node-gyp\.gitconfig
 set MSVS_VERSION=2019
 set GYP_MSVS_VERSION=2019
 
+set ELECTRON_SSE4=1
+
 set ELECTRON_CACHE=%~dp0%electron\bin
 set electron_config_cache=%~dp0%electron\bin
 

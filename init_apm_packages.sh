@@ -190,6 +190,8 @@ export GYP_MSVS_VERSION="2019" &&
 # Download electron binaries here
 export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
+# Use upstream Electron
+export ELECTRON_SSE4=1 &&
 
 printf "\n" &&
 printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\`...${c0}\n" &&
