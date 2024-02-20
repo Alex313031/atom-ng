@@ -4,10 +4,10 @@ title Bootstrapping Atom-ng
 
 echo Bootstrapping Atom-ng...
 
-set CFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
-set CXXFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
-set CPPFLAGS=-DNDEBUG /O2 /arch:AVX -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
-set LDFLAGS=-Wl,-O3 -mavx -maes -s
+set CFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set CXXFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set CPPFLAGS=-DNDEBUG /O2 /arch:AVX -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type
+set LDFLAGS=-Wl,-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -maes -s
 
 mkdir %USERPROFILE%\.atom\.node-gyp
 copy gitconfig %USERPROFILE%\.atom\.node-gyp\.gitconfig
