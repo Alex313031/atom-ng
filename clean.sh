@@ -31,7 +31,9 @@ printf "${bold}${GRE}Script to clean Atom-ng artifacts and node_modules.${c0}\n"
 sleep 1 &&
 
 printf "\n" &&
-printf "${bold}${YEL} Cleaning artifacts and build directory...${c0}\n" &&
+printf "${bold}${YEL} Cleaning artifacts, node_modules, and build directory...${c0}\n" &&
 rm -rfv ./docs/output &&
+rm -rfv ./dot-atom/packages/atom-ng-browser/node_modules &&
+rm -rfv ./dot-atom/packages/minimap/node_modules &&
 npm run clean &&
 tput sgr0

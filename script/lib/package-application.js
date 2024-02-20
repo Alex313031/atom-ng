@@ -14,6 +14,14 @@ const template = require('lodash.template');
 const CONFIG = require('../config');
 const HOST_ARCH = hostArch();
 
+let electronSource;
+// Use my optimized Electron builds unless SSE4 is set
+if (process.env.ELECTRON_SSE4 === '1') {
+  electronSource = 'https://github.com/electron/electron/releases/download/';
+} else {
+  electronSource = 'https://github.com/Alex313031/electron-12.2.3/releases/download/';
+}
+
 require('colors');
 
 module.exports = function() {
@@ -31,9 +39,13 @@ module.exports = function() {
     asar: { unpack: buildAsarUnpackGlobExpression() },
     buildVersion: CONFIG.appMetadata.version,
     derefSymlinks: false,
-    // Use my optimized Electron builds!
-    download: { quiet: false, disableChecksumSafetyCheck: true, unsafelyDisableChecksums: true, autoDownload: false, cacheRoot: CONFIG.electronDownloadPath, mirrorOptions: 
-        { mirror: 'https://github.com/Alex313031/electron-12.2.3/releases/download/' }
+    download: {
+      quiet: false,
+      disableChecksumSafetyCheck: true,
+      unsafelyDisableChecksums: true,
+      autoDownload: false,
+      cacheRoot: CONFIG.electronDownloadPath,
+      mirrorOptions: { mirror: electronSource }
     },
     quiet: false,
     disableChecksumSafetyCheck: true,

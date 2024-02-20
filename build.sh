@@ -31,6 +31,7 @@ displayHelp () {
 	printf "${bold}${YEL}Use the --build flag to build Atom-ng.${c0}\n" &&
 	printf "${bold}${YEL}Use the --clean flag to run \`npm run clean\`.${c0}\n" &&
 	printf "${bold}${YEL}Use the --dist flag to generate .tar.xz and .deb packages.${c0}\n" &&
+	printf "${bold}${YEL}Use the --sse4 flag to build Atom-ng (SSE4 Version).${c0}\n" &&
 	printf "${bold}${YEL}Use the --help flag to show this help.${c0}\n" &&
 	printf "\n"
 }
@@ -117,9 +118,6 @@ printf "\n" &&
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
-# Run final bootstrap
-./script/bootstrap &&
-
 export NODE_ENV=production &&
 
 # Build atom-ng
@@ -156,9 +154,6 @@ printf "\n" &&
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
-# Run final bootstrap
-./script/bootstrap &&
-
 export NODE_ENV=production &&
 
 # Build installation packages
@@ -168,6 +163,42 @@ case $1 in
 	--dist) packageAtom; exit 0;;
 esac
 
+packageAtomSSE4 () {
+# Optimization parameters
+export CFLAGS="-DNDEBUG -msse4.1 -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CXXFLAGS="-DNDEBUG -msse4.1 -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export CPPFLAGS="-DNDEBUG -msse4.1 -O3 -g0 -s -Wno-deprecated-declarations -Wno-implicit-fallthrough -Wno-cast-function-type" &&
+export LDFLAGS="-Wl,-O3 -msse4.1 -s" &&
+export VERBOSE=1 &&
+export V=1 &&
+
+# Use upstream electron
+# export ATOM_ELECTRON_URL='https://artifacts.electronjs.org/headers/dist' &&
+
+# Set msvs_version for node-gyp on Windows
+export MSVS_VERSION="2019" &&
+export GYP_MSVS_VERSION="2019" &&
+# Download electron binaries here
+export ELECTRON_CACHE="${PWD}/electron/bin" &&
+export electron_config_cache="${PWD}/electron/bin" &&
+# Use upstream Electron
+export ELECTRON_SSE4=1 &&
+
+printf "\n" &&
+printf "${bold}${GRE} Generating installation packages (SSE4 Version)...${c0}\n" &&
+printf "\n" &&
+
+# Workaround for jasmine
+mkdir -v -p $HOME/.atom/.node-gyp &&
+cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
+
+# Build installation packages
+./script/build --compress-artifacts
+}
+case $1 in
+	--sse4) packageAtomSSE4; exit 0;;
+esac
+
 printf "\n" &&
 printf "${bold}${GRE}Script to build Atom-ng on Linux or Windows.${c0}\n" &&
 printf "${bold}${YEL}Use the --deps flag to install build dependencies.${c0}\n" &&
@@ -175,6 +206,7 @@ printf "${bold}${YEL}Use the --bootstrap flag to install npm packages.${c0}\n" &
 printf "${bold}${YEL}Use the --build flag to build Atom-ng.${c0}\n" &&
 printf "${bold}${YEL}Use the --clean flag to run \`npm run clean\`.${c0}\n" &&
 printf "${bold}${YEL}Use the --dist flag to generate .tar.xz and .deb packages.${c0}\n" &&
+printf "${bold}${YEL}Use the --sse4 flag to build Atom-ng (SSE4 Version).${c0}\n" &&
 printf "${bold}${YEL}Use the --help flag to show this help.${c0}\n" &&
 printf "\n" &&
 tput sgr0

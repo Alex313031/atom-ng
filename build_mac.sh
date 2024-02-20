@@ -99,9 +99,6 @@ printf "\n" &&
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
 
-# Run final bootstrap
-./script/bootstrap &&
-
 export NODE_ENV=production &&
 
 # Build for MacOS
@@ -134,9 +131,6 @@ printf "\n" &&
 # Workaround for jasmine
 mkdir -v -p $HOME/.atom/.node-gyp &&
 cp -v gitconfig $HOME/.atom/.node-gyp/.gitconfig &&
-
-# Run final bootstrap
-./script/bootstrap &&
 
 export NODE_ENV=production &&
 
