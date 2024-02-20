@@ -20,6 +20,4 @@ set ELECTRON_SSE4=1
 set ELECTRON_CACHE=%~dp0%electron\bin
 set electron_config_cache=%~dp0%electron\bin
 
-set NODE_ENV=production
-
 script\build.cmd --compress-artifacts --create-windows-installer
