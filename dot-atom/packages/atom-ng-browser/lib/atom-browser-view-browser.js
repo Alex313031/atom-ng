@@ -12,7 +12,7 @@ import {
    CONFIG_RELOAD_DELAY,
    CONFIG_URL_OVERWRITE,
    CONFIG_ZOOM_FACTOR,
-} from './atom-ng-browser-confignames'
+} from './atom-browser-confignames'
 
 export default class AtomBrowserViewBrowser {
    constructor({

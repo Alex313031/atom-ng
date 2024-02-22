@@ -5,7 +5,7 @@ import {
    CONFIG_DEFAULT_LOCATION,
    CONFIG_INITIAL_URL,
    CONFIG_SHOW_ICON,
-} from '../lib/atom-ng-browser-confignames'
+} from '../lib/atom-browser-confignames'
 
 var element
 

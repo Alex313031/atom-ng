@@ -1,8 +1,8 @@
 'use babel';
 import { CompositeDisposable } from 'atom'
-import AtomBrowserViewBrowser from './atom-ng-browser-view-browser'
-import AtomBrowserViewIcon from './atom-ng-browser-view-icon'
-import AtomBrowserServer from './atom-ng-browser-server'
+import AtomBrowserViewBrowser from './atom-browser-view-browser'
+import AtomBrowserViewIcon from './atom-browser-view-icon'
+import AtomBrowserServer from './atom-browser-server'
 
 import {
    CONFIG_DEFAULT_LOCATION,
@@ -14,7 +14,7 @@ import {
    CONFIG_STATIC_SERVE,
    CONFIG_WEBVIEW_BACKGROUND,
    CONFIG_ZOOM_FACTOR,
-} from './atom-ng-browser-confignames'
+} from './atom-browser-confignames'
 
 export default {
    activate() {

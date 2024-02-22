@@ -25,7 +25,7 @@
       "html preview"
    ],
    "license": "MIT",
-   "main": "./lib/atom-ng-browser",
+   "main": "./lib/atom-browser",
    "name": "atom-ng-browser",
    "optionalDependencies": {},
    "readme": "Atom-ng-Browser is an extension to browse the web, preview files, auto-reload, and search Google within Atom-ng.",
@@ -37,8 +37,8 @@
       "dependencies": [],
       "extensions": {
          ".js": [
-            "lib\\atom-ng-browser-view.js",
-            "lib\\atom-ng-browser.js"
+            "lib\\atom-browser-view.js",
+            "lib\\atom-browser.js"
          ],
          ".json": [
             "package.json"

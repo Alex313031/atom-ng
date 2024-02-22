@@ -269,6 +269,8 @@ case $1 in
 	--mac) initMac; exit 0;;
 esac
 
+rm -fv ~/.gitconfig &&
+
 printf "\n" &&
 printf "${bold}${GRE}Script to bootstrap \`dot-atom/packages\`${c0}\n" &&
 printf "${bold}${YEL}Use the --linux flag for Linux.${c0}\n" &&
