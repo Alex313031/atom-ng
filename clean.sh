@@ -36,5 +36,6 @@ rm -rfv ./docs/output &&
 rm -rf ./dot-atom/packages/atom-ng-browser/node_modules &&
 rm -rf ./dot-atom/packages/minimap/node_modules &&
 rm -rfv ./dot-atom/packages/minimap/.parcel-cache &&
+rm -rfv ./dot-atom/packages/minimap/dist/main.js &&
 npm run clean &&
 tput sgr0
