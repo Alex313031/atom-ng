@@ -29,7 +29,7 @@ export default class AtomBrowserViewBrowser {
       this.reloading = false
       this.initialUrl = initialUrl
       this.iframeInfo = {}
-      this.uri = 'atom://atom-webview' + Math.random()
+      this.uri = 'atom://atom-webview/webview' + Math.random()
       this.openedDevTools = false
       this.zoomFactor = zoomFactor
 
