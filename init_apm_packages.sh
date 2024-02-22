@@ -57,7 +57,6 @@ if [ -e ~/.gitconfig ]
   cp -i -v ~/.gitconfig ~/.gitconfig_bak
 fi
 cp -v ./gitconfig ~/.gitconfig &&
-printf "\n" &&
 
 cd ./packages/atom-material-ui &&
 npm run build && cd ..&&
@@ -73,7 +72,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -v ~/.gitconfig &&
+printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
 printf "\n"
 }
 case $1 in
@@ -105,7 +104,6 @@ if [ -e ~/.gitconfig ]
   cp -i -v ~/.gitconfig ~/.gitconfig_bak
 fi
 cp -v ./gitconfig ~/.gitconfig &&
-printf "\n" &&
 
 cd ./packages/atom-material-ui &&
 npm run build && cd ..&&
@@ -121,7 +119,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -v ~/.gitconfig &&
+printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
 printf "\n"
 }
 case $1 in
@@ -154,7 +152,6 @@ if [ -e ~/.gitconfig ]
   cp -i -v ~/.gitconfig ~/.gitconfig_bak
 fi
 cp -v ./gitconfig ~/.gitconfig &&
-printf "\n" &&
 
 cd ./packages/atom-material-ui &&
 npm run build && cd ..&&
@@ -169,6 +166,8 @@ npm run build && cd .. &&
 cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
+printf "\n" &&
+printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
 printf "\n"
 }
 case $1 in
@@ -203,7 +202,6 @@ if [ -e ~/.gitconfig ]
   cp -i -v ~/.gitconfig ~/.gitconfig_bak
 fi
 cp -v ./gitconfig ~/.gitconfig &&
-printf "\n" &&
 
 cd ./packages/atom-material-ui &&
 npm run build && cd ..&&
@@ -218,6 +216,8 @@ npm run build && cd .. &&
 cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
+printf "\n" &&
+printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
 printf "\n"
 }
 case $1 in
@@ -247,7 +247,6 @@ if [ -e ~/.gitconfig ]
   cp -i -v ~/.gitconfig ~/.gitconfig_bak
 fi
 cp -v ./gitconfig ~/.gitconfig &&
-printf "\n" &&
 
 cd ./packages/atom-material-ui &&
 npm run build && cd ..&&
@@ -263,7 +262,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-#rm -v ~/.gitconfig &&
+printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
 printf "\n"
 }
 case $1 in
