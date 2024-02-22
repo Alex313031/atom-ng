@@ -71,8 +71,7 @@ export default class StoryView {
               <a name="2"><img class="story-image" onclick={this.didClickImage2} title="Atom History" src="atom://story/assets/atom_history.png"></img></a>
               <a name="3"><img class="story-image" onclick={this.didClickImage3} title="Atom Nightly" src="atom://story/assets/Atom_Nightly.jpeg"></img></a>
               <a name="4"><img class="story-image" onclick={this.didClickImage4} title="GitHub for Atom" src="atom://story/assets/GitHub_for_Atom.png"></img></a>
-              <a name="5"><img class="story-image" onclick={this.didClickImage5} title="OctoCat Rocket" src="atom://story/assets/Octocat_Rocket.svg"></img></a>
-              <a name="6"><img class="story-image" onclick={this.didClickImage6} title="A Present for Chu" src="atom://story/assets/present.png"></img></a>
+              <a name="5"><img class="story-image story-image-smaller" onclick={this.didClickImage5} title="OctoCat Rocket" src="atom://story/assets/Octocat_Rocket.svg"></img></a>
           </header>
         </div>
       </div>
