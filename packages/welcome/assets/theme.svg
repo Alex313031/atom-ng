@@ -17,8 +17,8 @@
                 <rect x="60" y="0" width="60" height="8"></rect>
                 <rect x="0" y="0" width="30" height="8"></rect>
             </g>
-            <path d="M140,0 L160,0 L160,80 L20,80 L140,0 Z" fill="#BB263A"></path>
-            <path d="M128,8 L160,8 L160,72 L39.984375,72 L39.984375,66.6474609 L128,8 Z" fill="#FF5F75"></path>
+            <path d="M140,0 L160,0 L160,80 L20,80 L140,0 Z" fill="#9649CA"></path>
+            <path d="M128,8 L160,8 L160,72 L39.984375,72 L39.984375,66.6474609 L128,8 Z" fill="#DDD"></path>
         </g>
     </g>
 </svg>

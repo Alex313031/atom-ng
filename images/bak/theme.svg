@@ -17,13 +17,8 @@
                 <rect x="60" y="0" width="60" height="8"></rect>
                 <rect x="0" y="0" width="30" height="8"></rect>
             </g>
-            <g transform="translate(142.000000, 8.000000)">
-                <rect fill="#9649CA" x="0" y="0" width="18" height="64"></rect>
-                <rect fill="#DDD" x="2" y="3" width="12" height="2"></rect>
-                <rect fill="#DDD" x="2" y="7" width="14" height="2"></rect>
-                <rect fill="#DDD" x="2" y="11" width="6" height="2"></rect>
-                <rect fill="#DDD" x="2" y="15" width="10" height="2"></rect>
-            </g>
+            <path d="M140,0 L160,0 L160,80 L20,80 L140,0 Z" fill="#BB263A"></path>
+            <path d="M128,8 L160,8 L160,72 L39.984375,72 L39.984375,66.6474609 L128,8 Z" fill="#FF5F75"></path>
         </g>
     </g>
 </svg>

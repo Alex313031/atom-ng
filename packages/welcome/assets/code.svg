@@ -18,10 +18,10 @@
                 <rect x="0" y="0" width="30" height="8"></rect>
             </g>
             <g transform="translate(44.000000, 12.000000)">
-                <rect fill="#BB263A" x="0" y="0" width="18" height="4"></rect>
-                <rect fill="#BB263A" x="0" y="8" width="47" height="4"></rect>
-                <rect fill="#BB263A" x="0" y="16" width="31" height="4"></rect>
-                <rect fill="#FF5F74" x="33" y="16" width="2" height="4"></rect>
+                <rect fill="#9649CA" x="0" y="0" width="18" height="4"></rect>
+                <rect fill="#9649CA" x="0" y="8" width="47" height="4"></rect>
+                <rect fill="#9649CA" x="0" y="16" width="31" height="4"></rect>
+                <rect fill="#DDD" x="33" y="16" width="2" height="4"></rect>
             </g>
         </g>
     </g>
