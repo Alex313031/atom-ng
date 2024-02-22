@@ -1,6 +1,6 @@
 {
   "name": "welcome",
-  "version": "0.37.4",
+  "version": "0.37.5",
   "description": "Welcome users to Atom-ng with useful information",
   "main": "./lib/main",
   "atomTestRunner": "atom-mocha-test-runner",
@@ -13,8 +13,7 @@
     "lint": "standard",
     "test": "atom --test test/*.test.js"
   },
-  "consumedServices": {
-  },
+  "consumedServices": {},
   "configSchema": {
     "showOnStartup": {
       "type": "boolean",
@@ -25,17 +24,11 @@
       "type": "boolean",
       "default": false,
       "description": "Show telemetry consent pane when opening a new Atom-ng window. Always false."
-    },
-    "showSunsettingOnStartup": {
-      "type": "boolean",
-      "default": false,
-      "description": "Show sunsetting pane when opening a new Atom-ng window. Always false."
     }
   },
   "deserializers": {
     "WelcomeView": "createWelcomeView",
-    "GuideView": "createGuideView",
-    "ConsentView": "createConsentView"
+    "GuideView": "createGuideView"
   },
   "dependencies": {
     "etch": "0.9.5"

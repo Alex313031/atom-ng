@@ -357,8 +357,7 @@ export default class GuideView {
 
   getSectionProps(sectionName) {
     const props = {
-      dataset: { section: sectionName },
-      onclick: this.didExpandOrCollapseSection
+      dataset: { section: sectionName }
     };
     if (
       this.props.openSections &&
@@ -418,7 +417,6 @@ export default class GuideView {
   }
 
   didClickProjectButton() {
-    this.props.reporterProxy.sendEvent('clicked-project-cta');
     atom.commands.dispatch(
       atom.views.getView(atom.workspace),
       'application:open'
@@ -426,7 +424,6 @@ export default class GuideView {
   }
 
   didClickGitButton() {
-    this.props.reporterProxy.sendEvent('clicked-git-cta');
     atom.commands.dispatch(
       atom.views.getView(atom.workspace),
       'github:toggle-git-tab'
@@ -434,7 +431,6 @@ export default class GuideView {
   }
 
   didClickGitHubButton() {
-    this.props.reporterProxy.sendEvent('clicked-github-cta');
     atom.commands.dispatch(
       atom.views.getView(atom.workspace),
       'github:toggle-github-tab'
@@ -442,40 +438,26 @@ export default class GuideView {
   }
 
   didClickPackagesButton() {
-    this.props.reporterProxy.sendEvent('clicked-packages-cta');
     atom.workspace.open('atom://config/install', { split: 'left' });
   }
 
   didClickThemesButton() {
-    this.props.reporterProxy.sendEvent('clicked-themes-cta');
     atom.workspace.open('atom://config/themes', { split: 'left' });
   }
 
   didClickStylingButton() {
-    this.props.reporterProxy.sendEvent('clicked-styling-cta');
     atom.workspace.open('atom://.atom/stylesheet', { split: 'left' });
   }
 
   didClickInitScriptButton() {
-    this.props.reporterProxy.sendEvent('clicked-init-script-cta');
     atom.workspace.open('atom://.atom/init-script', { split: 'left' });
   }
 
   didClickSnippetsButton() {
-    this.props.reporterProxy.sendEvent('clicked-snippets-cta');
     atom.workspace.open('atom://.atom/snippets', { split: 'left' });
   }
 
   didClickTeletypeButton() {
-    this.props.reporterProxy.sendEvent('clicked-teletype-cta');
     atom.workspace.open('atom://config/packages/teletype', { split: 'left' });
-  }
-
-  didExpandOrCollapseSection(event) {
-    const sectionName = event.currentTarget.closest('details').dataset.section;
-    const action = event.currentTarget.hasAttribute('open')
-      ? 'collapse'
-      : 'expand';
-    this.props.reporterProxy.sendEvent(`${action}-${sectionName}-section`);
   }
 }
