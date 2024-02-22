@@ -1,17 +1,12 @@
 /** @babel */
 
 import { CompositeDisposable } from 'atom';
-import ReporterProxy from './reporter-proxy';
 
 let StoryView;
 
 const STORY_URI = 'atom://story';
 
 export default class StoryPackage {
-  constructor() {
-    this.reporterProxy = new ReporterProxy();
-  }
-
   async activate() {
     this.subscriptions = new CompositeDisposable();
 
@@ -31,7 +26,6 @@ export default class StoryPackage {
 
     if (atom.config.get('story.showOnStartup')) {
       await this.showStory();
-      this.reporterProxy.sendEvent('show-on-initial-load');
     }
   }
 
@@ -41,16 +35,12 @@ export default class StoryPackage {
     ]);
   }
 
-  consumeReporter(reporter) {
-    return this.reporterProxy.setReporter(reporter);
-  }
-
   deactivate() {
     this.subscriptions.dispose();
   }
 
   createStoryView(state) {
     if (StoryView == null) StoryView = require('./story-view');
-    return new StoryView({ reporterProxy: this.reporterProxy, ...state });
+    return new StoryView(state);
   }
 }
