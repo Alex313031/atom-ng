@@ -357,7 +357,8 @@ export default class GuideView {
 
   getSectionProps(sectionName) {
     const props = {
-      dataset: { section: sectionName }
+      dataset: { section: sectionName },
+      onclick: this.didExpandOrCollapseSection
     };
     if (
       this.props.openSections &&
@@ -459,5 +460,12 @@ export default class GuideView {
 
   didClickTeletypeButton() {
     atom.workspace.open('atom://config/packages/teletype', { split: 'left' });
+  }
+
+  didExpandOrCollapseSection(event) {
+    const sectionName = event.currentTarget.closest('details').dataset.section;
+    const action = event.currentTarget.hasAttribute('open')
+      ? 'collapse'
+      : 'expand';
   }
 }
