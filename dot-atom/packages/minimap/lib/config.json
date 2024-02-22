@@ -4,7 +4,7 @@
     "properties": {}
   },
   "autoToggle": {
-    "title": "Show Minimap On Atom Start",
+    "title": "Show Minimap when starting Atom-ng",
     "type": "boolean",
     "default": true,
     "order": 1
@@ -23,7 +23,7 @@
   "displayPluginsControls": {
     "type": "boolean",
     "default": true,
-    "description": "You need to restart Atom for this setting to be effective.",
+    "description": "You need to restart Atom-ng for this setting to be effective.",
     "order": 4
   },
   "minimapScrollIndicator": {

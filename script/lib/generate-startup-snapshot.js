@@ -263,8 +263,7 @@ module.exports = function(packagedAppPath) {
       );
     }
   }).then(({ snapshotScript }) => {
-    process.stdout.write('\n');
-    process.stdout.write('Minifying startup script...');
+    process.stdout.write('\nMinifying startup script...');
     const minification = terser.minify(snapshotScript, {
       keep_fnames: true,
       keep_classnames: true,

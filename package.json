@@ -22,6 +22,9 @@
   "license": "MIT",
   "copyright": "Copyright © 2024 Alex313031",
   "electronVersion": "12.2.3",
+  "devDependencies": {
+    "rimraf": "3.0.2"
+  },
   "dependencies": {
     "@atom/fuzzy-native": "git+https://github.com/atom/fuzzy-native.git#934c5ad",
     "@atom/nsfw": "git+https://github.com/Alex313031/nsfw-ng.git#7c332b3",
@@ -290,7 +293,8 @@
     "test": "node script/test",
     "bootstrap": "node script/bootstrap",
     "build": "node script/build",
-    "clean": "node script/clean"
+    "clean": "node script/clean",
+    "burn": "rimraf ./package-lock.json && rimraf ./script/package-lock.json && rimraf ./apm/package-lock.json"
   },
   "standard-engine": "./script/node_modules/standard",
   "standard": {

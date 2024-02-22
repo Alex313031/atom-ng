@@ -207,7 +207,7 @@ export default class AtomBrowserViewBrowser {
       // search google
       if (!url.includes('://') && !url.startsWith('localhost'))
          if (url.indexOf(' ') >= 0 || !url.includes(' ') && !url.includes('.'))
-            url = 'https://duckduckgo.com/?q=' + url
+            url = 'https://duckduckgo.com/?q=' + url + '&ie=UTF-8'
 
       // add http://
       if (!url.includes('://'))

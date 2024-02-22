@@ -33,7 +33,8 @@ sleep 1 &&
 printf "\n" &&
 printf "${bold}${YEL} Cleaning artifacts, node_modules, and build directory...${c0}\n" &&
 rm -rfv ./docs/output &&
-rm -rfv ./dot-atom/packages/atom-ng-browser/node_modules &&
-rm -rfv ./dot-atom/packages/minimap/node_modules &&
+rm -rf ./dot-atom/packages/atom-ng-browser/node_modules &&
+rm -rf ./dot-atom/packages/minimap/node_modules &&
+rm -rfv ./dot-atom/packages/minimap/.parcel-cache &&
 npm run clean &&
 tput sgr0
