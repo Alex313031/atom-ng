@@ -25,14 +25,13 @@
       "html preview"
    ],
    "license": "MIT",
-   "main": "./lib/atom-browser",
-   "name": "atom-browser",
+   "main": "./lib/atom-ng-browser",
+   "name": "atom-ng-browser",
    "optionalDependencies": {},
    "readme": "Atom-ng-Browser is an extension to browse the web, preview files, auto-reload, and search Google within Atom-ng.",
    "readmeFilename": "README.md",
    "repository": {
-      "type": "git",
-      "url": "git@github.com:Alex313031/atom-ng-browser.git"
+     "https://github.com/Alex313031/atom-ng-browser.git"
    },
    "version": "2.1.5",
    "_atomModuleCache": {
@@ -40,8 +39,8 @@
       "dependencies": [],
       "extensions": {
          ".js": [
-            "lib\\atom-browser-view.js",
-            "lib\\atom-browser.js"
+            "lib\\atom-ng-browser-view.js",
+            "lib\\atom-ng-browser.js"
          ],
          ".json": [
             "package.json"

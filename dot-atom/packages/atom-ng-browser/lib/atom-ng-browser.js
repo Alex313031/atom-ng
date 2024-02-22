@@ -1,8 +1,8 @@
 'use babel';
 import { CompositeDisposable } from 'atom'
-import AtomBrowserViewBrowser from './atom-browser-view-browser'
-import AtomBrowserViewIcon from './atom-browser-view-icon'
-import AtomBrowserServer from './atom-browser-server'
+import AtomBrowserViewBrowser from './atom-ng-browser-view-browser'
+import AtomBrowserViewIcon from './atom-ng-browser-view-icon'
+import AtomBrowserServer from './atom-ng-browser-server'
 
 import {
    CONFIG_DEFAULT_LOCATION,
@@ -14,7 +14,7 @@ import {
    CONFIG_STATIC_SERVE,
    CONFIG_WEBVIEW_BACKGROUND,
    CONFIG_ZOOM_FACTOR,
-} from './atom-browser-confignames'
+} from './atom-ng-browser-confignames'
 
 export default {
    activate() {
@@ -56,10 +56,10 @@ export default {
       this.subscriptions = new CompositeDisposable();
       this.subscriptions.add(
          atom.commands.add('atom-workspace', {
-            'atom-browser:preview': () => this.onPreview(),
-            'atom-browser:show': () => this.show(),
-            'atom-browser:hide': () => this.hide(),
-            'atom-browser:showHide': () => this.toggle(),
+            'atom-ng-browser:preview': () => this.onPreview(),
+            'atom-ng-browser:show': () => this.show(),
+            'atom-ng-browser:hide': () => this.hide(),
+            'atom-ng-browser:showHide': () => this.toggle(),
          }),
          atom.config.onDidChange(CONFIG_DEFAULT_LOCATION, () => this.changeConfigDefaultLocation()),
          atom.config.onDidChange(CONFIG_WEBVIEW_BACKGROUND, () => this.changeConfigWebviewBackground()),

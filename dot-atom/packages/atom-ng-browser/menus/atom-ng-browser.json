@@ -5,7 +5,7 @@
          },
          {
             "label": "Atom-ng Browser: Preview",
-            "command": "atom-browser:preview"
+            "command": "atom-ng-browser:preview"
          }
       ]
    },
@@ -16,11 +16,11 @@
          "submenu": [
             {
                "label": "Toggle",
-               "command": "atom-browser:showHide"
+               "command": "atom-ng-browser:showHide"
             },
             {
                "label": "Preview",
-               "command": "atom-browser:preview"
+               "command": "atom-ng-browser:preview"
             }
          ]
       }]

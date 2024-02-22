@@ -5,16 +5,16 @@ import {
    CONFIG_DEFAULT_LOCATION,
    CONFIG_INITIAL_URL,
    CONFIG_SHOW_ICON,
-} from '../lib/atom-browser-confignames'
+} from '../lib/atom-ng-browser-confignames'
 
 var element
 
 describe("atom browser tests", function() {
    beforeEach(function() {
-      waitsForPromise(() => atom.packages.activatePackage('atom-browser'))
+      waitsForPromise(() => atom.packages.activatePackage('atom-ng-browser'))
       waitsForPromise(() => atom.commands.dispatch(
          atom.views.getView(atom.workspace),
-         'atom-browser:show'
+         'atom-ng-browser:show'
       ))
 
       waitsFor(() => {
@@ -24,7 +24,7 @@ describe("atom browser tests", function() {
    })
 
    afterEach(function() {
-      atom.packages.disablePackage('atom-browser')
+      atom.packages.disablePackage('atom-ng-browser')
    })
 
    it("atom browser exists", function() {

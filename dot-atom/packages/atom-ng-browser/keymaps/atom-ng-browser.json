@@ -1,0 +1,7 @@
+{
+   "atom-workspace": {
+      "cmd-alt-x": "atom-ng-browser:devtools",
+      "cmd-alt-r": "atom-ng-browser:reload",
+      "alt-v": "atom-ng-browser:showHide"
+   }
+}

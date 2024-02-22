@@ -12,7 +12,7 @@ import {
    CONFIG_RELOAD_DELAY,
    CONFIG_URL_OVERWRITE,
    CONFIG_ZOOM_FACTOR,
-} from './atom-browser-confignames'
+} from './atom-ng-browser-confignames'
 
 export default class AtomBrowserViewBrowser {
    constructor({
@@ -29,7 +29,7 @@ export default class AtomBrowserViewBrowser {
       this.reloading = false
       this.initialUrl = initialUrl
       this.iframeInfo = {}
-      this.uri = 'atom://atom-webview/webview' + Math.random()
+      this.uri = 'atom://atom-webview' + Math.random()
       this.openedDevTools = false
       this.zoomFactor = zoomFactor
 
@@ -73,8 +73,8 @@ export default class AtomBrowserViewBrowser {
    setListeners() {
       this.subscriptions.add(
          atom.commands.add('atom-workspace', {
-            'atom-browser:reload': () => this.reload(),
-            'atom-browser:devtools': () => this.devtools()
+            'atom-ng-browser:reload': () => this.reload(),
+            'atom-ng-browser:devtools': () => this.devtools()
          }),
       )
 
@@ -192,12 +192,12 @@ export default class AtomBrowserViewBrowser {
 
       } catch(e) {
          console.error('ATOM-BROWSER: url overwrite error', e)
-         atom.notifications.addError('The package `atom-browser` could not parse the setting URL Overwrites. Check to make sure this is valid JSON', {
+         atom.notifications.addError('The package `atom-ng-browser` could not parse the setting URL Overwrites. Check to make sure this is valid JSON', {
             dismissable: true,
             buttons: [
                {
                   text: 'Go to settings',
-                  onDidClick: () => atom.workspace.open("atom://config/packages/atom-browser")
+                  onDidClick: () => atom.workspace.open("atom://config/packages/atom-ng-browser")
                }
             ]
          })

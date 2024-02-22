@@ -12,7 +12,7 @@ Atom-ng-Browser is the plugin to browse the web, preview files, auto-reload, and
 ## Toggle Auto Reload on save
 
 ![Atom google example](https://github.com/Alex313031/atom-ng-browser/raw/master/example_reload.gif?v=3)
-Now when you save a file atom-browser will reload the page
+Now when you save a file atom-ng-browser will reload the page
 
 ## Search DuckDuckGo
 
