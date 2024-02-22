@@ -72,8 +72,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -fv ~/.gitconfig &&
-printf "\n"
+rm -fv ~/.gitconfig
 }
 case $1 in
 	--linux) initLinux; exit 0;;
@@ -119,8 +118,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -fv ~/.gitconfig &&
-printf "\n"
+rm -fv ~/.gitconfig
 }
 case $1 in
 	--sse4) initLinuxSSE4; exit 0;;
@@ -167,8 +165,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -fv ~/.gitconfig &&
-printf "\n"
+rm -fv ~/.gitconfig
 }
 case $1 in
 	--win) initWin; exit 0;;
@@ -217,8 +214,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -fv ~/.gitconfig &&
-printf "\n"
+rm -fv ~/.gitconfig
 }
 case $1 in
 	--win-sse4) initWinSSE4; exit 0;;
@@ -262,8 +258,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-rm -fv ~/.gitconfig &&
-printf "\n"
+rm -fv ~/.gitconfig
 }
 case $1 in
 	--mac) initMac; exit 0;;
