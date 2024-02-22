@@ -114,8 +114,4 @@ export default class StoryView {
 	e.preventDefault();
     atom.workspace.open(path.join(process.resourcesPath, 'app.asar', 'node_modules', 'story', 'assets', 'Octocat_Rocket.svg'));
   }
-  didClickImage6(e) {
-	e.preventDefault();
-    atom.workspace.open(path.join(process.resourcesPath, 'app.asar', 'node_modules', 'story', 'assets', 'present.png'));
-  }
 };
