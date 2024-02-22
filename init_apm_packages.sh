@@ -72,7 +72,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
+rm -fv ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
@@ -119,7 +119,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
+rm -fv ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
@@ -167,7 +167,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
+rm -fv ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
@@ -217,7 +217,7 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
+rm -fv ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
@@ -262,14 +262,12 @@ cd minimap && npm run build &&
 cd .. && cd .. && cd .. &&
 
 printf "\n" &&
-printf "${RED}NOTE: .gitconfig from this repo was copied to $HOME! Restore your old one with the .gitconfig_bak file that was made!${c0}\n" &&
+rm -fv ~/.gitconfig &&
 printf "\n"
 }
 case $1 in
 	--mac) initMac; exit 0;;
 esac
-
-rm -fv ~/.gitconfig &&
 
 printf "\n" &&
 printf "${bold}${GRE}Script to bootstrap \`dot-atom/packages\`${c0}\n" &&
