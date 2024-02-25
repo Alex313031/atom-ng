@@ -11,11 +11,13 @@ require('colors');
 
 module.exports = function(packagedAppPath) {
   const appArchivePath = path.join(CONFIG.buildOutputPath, getArchiveName());
-  console.log(`Copying portable user data dir into "${packagedAppPath}"`);
-  fs.copySync(
-    path.join(CONFIG.repositoryRootPath, 'portable', 'user_data_dir'),
-    path.join(packagedAppPath)
-  );
+  if (!process.platform === 'darwin') {
+    console.log(`Copying portable user data dir into "${packagedAppPath}"`);
+    fs.copySync(
+      path.join(CONFIG.repositoryRootPath, 'portable', 'user_data_dir'),
+      path.join(packagedAppPath)
+    );
+  }
   compress(packagedAppPath, appArchivePath);
 
   if (process.platform === 'darwin') {
