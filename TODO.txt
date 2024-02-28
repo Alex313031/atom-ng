@@ -1,3 +1,5 @@
-update electron to 13.6.9
+ - Update electron to 13.6.9
 
-make atom-ng browser have its own overlay on the right
+ - Make atom-ng browser have its own overlay on the right without other git stuff in the way
+
+ - Update Atom story

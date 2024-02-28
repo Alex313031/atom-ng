@@ -572,6 +572,15 @@ class AtomEnvironment {
     return this.appVersion;
   }
 
+  // Public: Get the user data dir of Electron.
+  //
+  // Returns the directory location {String}
+  getUserDataDir() {
+    if (this.userDataDir == null)
+      this.userDataDir = this.getLoadSettings().userDataDir;
+    return this.userDataDir;
+  }
+
   // Public: Gets the release channel of the Atom application.
   //
   // Returns the release channel as a {String}. Will return a specific release channel

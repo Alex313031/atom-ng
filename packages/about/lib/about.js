@@ -71,6 +71,8 @@ module.exports = class About {
         currentChromeVersion: this.state.currentChromeVersion,
         currentNodeVersion: this.state.currentNodeVersion,
         currentV8Version: this.state.currentV8Version,
+        userDataDir: this.state.userDataDir,
+        atomHome: this.state.atomHome,
         availableVersion: this.state.updateManager.getAvailableVersion()
       });
       this.handleStateChanges();
@@ -88,6 +90,9 @@ module.exports = class About {
           currentElectronVersion: this.state.currentElectronVersion,
           currentChromeVersion: this.state.currentChromeVersion,
           currentNodeVersion: this.state.currentNodeVersion,
+          currentV8Version: this.state.currentV8Version,
+          userDataDir: this.state.userDataDir,
+          atomHome: this.state.atomHome,
           availableVersion: this.state.updateManager.getAvailableVersion()
         });
       }

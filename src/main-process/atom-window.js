@@ -114,6 +114,7 @@ module.exports = class AtomWindow extends EventEmitter {
     this.loadSettings.appName = getAppName();
     this.loadSettings.resourcePath = this.resourcePath;
     this.loadSettings.atomHome = process.env.ATOM_HOME;
+    this.loadSettings.userDataDir = app.getPath('userData');
     if (this.loadSettings.devMode == null) this.loadSettings.devMode = false;
     if (this.loadSettings.safeMode == null) this.loadSettings.safeMode = false;
     if (this.loadSettings.clearWindowState == null)

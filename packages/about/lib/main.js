@@ -1,4 +1,6 @@
 const { CompositeDisposable } = require('atom');
+const { app } = require('electron');
+const path = require('path');
 const semver = require('semver');
 const UpdateManager = require('./update-manager');
 const About = require('./about');
@@ -82,6 +84,8 @@ module.exports = {
       currentChromeVersion: process.versions.chrome,
       currentNodeVersion: process.version,
       currentV8Version: process.versions.v8,
+      userDataDir: atom.getUserDataDir(),
+      atomHome: atom.getConfigDirPath(),
       updateManager: updateManager
     });
   },

@@ -33,6 +33,16 @@ module.exports = class AboutView extends EtchComponent {
     atom.clipboard.write(this.props.currentV8Version);
   }
 
+  handleUserDataDirClick(e) {
+    e.preventDefault();
+    atom.clipboard.write(this.props.userDataDir);
+  }
+
+  handleAtomHomeClick(e) {
+    e.preventDefault();
+    atom.clipboard.write(this.props.atomHome);
+  }
+
   handleReleaseNotesClick(e) {
     e.preventDefault();
     shell.openExternal(
@@ -188,6 +198,34 @@ module.exports = class AboutView extends EtchComponent {
                   `V8: ${this.props.currentV8Version} `
                 ),
                 $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy V8 Version' })
+              )
+            ),
+            $.div(
+              { className: 'about-more-info' },
+              $.span(
+                {
+                  className: 'about-version-container inline-block userdatadir',
+                  onclick: this.handleUserDataDirClick.bind(this)
+                },
+                $.span(
+                  { className: 'about-more-version' },
+                  `Electron User Data Dir: ${this.props.userDataDir} `
+                ),
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy Electron User Data Dir' })
+              )
+            ),
+            $.div(
+              { className: 'about-more-info' },
+              $.span(
+                {
+                  className: 'about-version-container inline-block atomhome',
+                  onclick: this.handleAtomHomeClick.bind(this)
+                },
+                $.span(
+                  { className: 'about-more-version' },
+                  `Atom Config Dir: ${this.props.atomHome} `
+                ),
+                $.span({ className: 'icon icon-clippy about-copy-version', title: 'Copy Atom Config Dir' })
               )
             )
           )
