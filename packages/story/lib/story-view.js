@@ -67,10 +67,15 @@ export default class StoryView {
             </label>
           </section>
           </div>
+              <figure class="fig">Celebrating Atom&#39;s 1.0 release</figure>
               <a name="1"><img class="story-image" onclick={this.didClickImage1} title="Atom 1.0!" src="atom://story/assets/atom_1.0.png"></img></a>
+              <figure class="fig">Major Atom milestones</figure>
               <a name="2"><img class="story-image" onclick={this.didClickImage2} title="Atom History" src="atom://story/assets/atom_history.png"></img></a>
+              <figure class="fig">Atom Nightly is born</figure>
               <a name="3"><img class="story-image" onclick={this.didClickImage3} title="Atom Nightly" src="atom://story/assets/Atom_Nightly.jpeg"></img></a>
+              <figure class="fig">Atom integrates with GitHub</figure>
               <a name="4"><img class="story-image" onclick={this.didClickImage4} title="GitHub for Atom" src="atom://story/assets/GitHub_for_Atom.png"></img></a>
+              <figure class="fig">OctoCat Rocket!</figure>
               <a name="5"><img class="story-image story-image-smaller" onclick={this.didClickImage5} title="OctoCat Rocket" src="atom://story/assets/Octocat_Rocket.png"></img></a>
           </header>
         </div>
