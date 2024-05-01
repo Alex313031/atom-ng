@@ -33,4 +33,4 @@ out/
 /packages/grammar-selector/node_modules/
 /script/update-server/node_modules/
 /script/vsts/node_modules/
-/dot-atom/packages/minimap/package-lock.json
+dot-atom/packages/minimap/package-lock.json
