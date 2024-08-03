@@ -48,7 +48,7 @@ export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
 
 printf "\n" &&
-printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\`...${c0}\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (Linux AVX Version)...${c0}\n" &&
 printf "\n" &&
 
 # Workaround for git:// URLs
@@ -94,7 +94,7 @@ export electron_config_cache="${PWD}/electron/bin" &&
 export ELECTRON_SSE4=1 &&
 
 printf "\n" &&
-printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (SSE4 Version)...${c0}\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (Linux SSE4 Version)...${c0}\n" &&
 printf "\n" &&
 
 # Workaround for git:// URLs
@@ -141,7 +141,7 @@ export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
 
 printf "\n" &&
-printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\`...${c0}\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (Windows AVX Version)...${c0}\n" &&
 printf "\n" &&
 
 # Workaround for git:// URLs
@@ -190,7 +190,7 @@ export electron_config_cache="${PWD}/electron/bin" &&
 export ELECTRON_SSE4=1 &&
 
 printf "\n" &&
-printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (SSE4 Version)...${c0}\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (Windows SSE4 Version)...${c0}\n" &&
 printf "\n" &&
 
 # Workaround for git:// URLs
@@ -234,7 +234,7 @@ export ELECTRON_CACHE="${PWD}/electron/bin" &&
 export electron_config_cache="${PWD}/electron/bin" &&
 
 printf "\n" &&
-printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\`...${c0}\n" &&
+printf "${bold}${GRE} Bootstrapping \`dot-atom/packages\` with \`npm install\` (MacOS x64 Version)...${c0}\n" &&
 printf "\n" &&
 
 # Workaround for git:// URLs
