@@ -26,7 +26,7 @@ displayHelp () {
 	printf "${bold}${YEL}Use the --win flag for Windows (in bash)${c0}\n" &&
 	printf "${bold}${YEL}Use the --mac flag for MacOS (in bash)${c0}\n" &&
 	printf "${bold}${YEL}Use the --sse4 flag for Linux (SSE4 Version).${c0}\n" &&
-	printf "${bold}${YEL}Use the --win-sse4 flag for Linux (SSE4 Version).${c0}\n" &&
+	printf "${bold}${YEL}Use the --win-sse4 flag for Windows (SSE4 Version).${c0}\n" &&
 	printf "${bold}${YEL}Use the --help flag to show this help${c0}\n" &&
 	printf "\n"
 }
@@ -270,7 +270,7 @@ printf "${bold}${YEL}Use the --linux flag for Linux.${c0}\n" &&
 printf "${bold}${YEL}Use the --win flag for Windows (in bash)${c0}\n" &&
 printf "${bold}${YEL}Use the --mac flag for MacOS (in bash)${c0}\n" &&
 printf "${bold}${YEL}Use the --sse4 flag for Linux (SSE4 Version).${c0}\n" &&
-printf "${bold}${YEL}Use the --win-sse4 flag for Linux (SSE4 Version).${c0}\n" &&
+printf "${bold}${YEL}Use the --win-sse4 flag for Windows (SSE4 Version).${c0}\n" &&
 printf "${bold}${YEL}Use the --help flag to show this help${c0}\n" &&
 printf "\n" &&
 tput sgr0
