@@ -63,6 +63,7 @@ export default class AtomBrowserViewBrowser {
          btn: {
             reload: this.element.querySelector('#atombrowser-btn-reload'),
             back: this.element.querySelector('#atombrowser-btn-back'),
+            forward: this.element.querySelector('#atombrowser-btn-forward'),
             devtools: this.element.querySelector('#atombrowser-btn-devtools'),
             livereload: this.element.querySelector('#atombrowser-btn-livereload'),
             tabs: this.element.querySelector('#atombrowser-btn-tabs')
@@ -131,6 +132,7 @@ export default class AtomBrowserViewBrowser {
       // button events Back/Reload/Tools
       this.html.btn.reload.addEventListener('click', () => this.reload())
       this.html.btn.back.addEventListener('click', () => this.back())
+      this.html.btn.forward.addEventListener('click', () => this.forward())
       this.html.btn.devtools.addEventListener('click', () => this.devtools())
       this.html.btn.livereload.addEventListener('click', () => {
          var active = !this.html.btn.livereload.classList.contains('active')
@@ -258,6 +260,11 @@ export default class AtomBrowserViewBrowser {
    back() {
       if (this.getWebContents() && this.html.webview.canGoBack())
          this.html.webview.goBack()
+   }
+
+   forward() {
+      if (this.getWebContents() && this.html.webview.canGoForward())
+         this.html.webview.goForward()
    }
 
    // zoom

@@ -31,7 +31,7 @@
    "readme": "Atom-ng-Browser is an extension to browse the web, preview files, auto-reload, and search Google within Atom-ng.",
    "readmeFilename": "README.md",
    "repository": "https://github.com/Alex313031/atom-ng-browser.git",
-   "version": "2.1.5",
+   "version": "2.1.6",
    "_atomModuleCache": {
       "version": 1,
       "dependencies": [],

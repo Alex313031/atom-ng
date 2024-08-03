@@ -5,6 +5,7 @@ module.exports = ({ reloadByDefault, showZoomButtons, zoomFactor }) => {
          <!-- back / reload / refresh-on-save -->
          <button title="Go Back" id="atombrowser-btn-back" class="btn"><i class="icon icon-chevron-left"></i></button>
          <button title="Reload" id="atombrowser-btn-reload" class="btn"><i class="icon icon-sync"></i></button>
+         <button title="Go Forward" id="atombrowser-btn-forward" class="btn"><i class="icon icon-chevron-right"></i></button>
          <button title="Live Reload" id="atombrowser-btn-livereload" class="btn ${reloadByDefault ? 'active' : ''}"><i class="icon icon-zap"></i></button>
 
          <!-- addressbar -->
