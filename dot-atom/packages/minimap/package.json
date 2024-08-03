@@ -1,6 +1,6 @@
 {
   "name": "minimap",
-  "version": "4.40.4",
+  "version": "4.40.5",
   "description": "A side-docked preview of the full document.",
   "repository": "https://github.com/Alex313031/minimap-ng",
   "license": "MIT",
@@ -52,8 +52,8 @@
     "eslint": "^7.32.0",
     "eslint-config-atomic": "^1.17.0",
     "jasmine-expect": "^5.0.0",
-    "npm-check-updates": "latest",
-    "parcel": "2.0.0-nightly.760",
+    "npm-check-updates": "16.14.20",
+    "parcel": "2.12.0",
     "prettier-config-atomic": "^3.0.5",
     "shx": "^0.3.4",
     "terser-config-atomic": "^0.1.1",
